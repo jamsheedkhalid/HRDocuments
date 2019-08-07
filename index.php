@@ -1,3 +1,25 @@
+<?php
+include('config/dbConfig.php');
+session_start();
+
+if (isset($_POST['submit']) && ($_POST['name'] !== '')) {    
+    $_SESSION['name'] = $_POST['name'];
+    $name = $_POST['name'];
+
+    $sql = " SELECT nationality_id, job_title, joining_date, first_name from employees WHERE employee_number "
+            . "LIKE '$name%' OR first_name LIKE '%$name%' OR middle_name LIKE '%$name%' "
+            . "OR last_name LIKE '%$name%'  ";
+//echo $sql;
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $jobtitle = $row['job_title'];
+        }
+    }
+
+    $conn->close();
+}
+?>
 
 <html lang="en">
     <head>
@@ -27,6 +49,9 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
         <!--print-->
         <script src="vendor/print/print.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/autoFill.js"></script>
     </head>
 
     <body>
@@ -76,14 +101,63 @@
         </nav>
         <!--/.Navbar -->
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Issue NOL
-        </button>
+        <!-- Default form login --> 
+        <div class="container" style="padding: 20px">
+            <div class="row">
+                <form  class="text-center border  border-light p-5 col-md-6" action="#!" method="post">
+
+                    <p class="h4 mb-4">NO OBJECTION LETTER</p>
+                    
+                    <!-- Name -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Forwading To</span>
+                        </div>
+                        <input type="text" list="display" id="fwdto" name="fwdto"  class="form-control" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                        <datalist  id="display"></datalist >
+                    </div>
+
+
+                    <!-- Name -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Employee</span>
+                        </div>
+                        <input type="text" list="display" id="name" name="name"  class="form-control" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                        <datalist  id="display"></datalist >
+                    </div>
+
+                    <!-- Intrest -->
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="font-size: 12px;">Objective</span>
+                        </div>
+                        <textarea type="text" id="inputIntrest"  name="inputobjective"class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                    <!-- School Declration -->
+                    <div class="input-group" style="padding-top: 20px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="font-size: 12px;">School Decleration</span>
+                        </div>
+                        <textarea type="text" id="inputdecelration" name="inputdecelration" class="form-control" aria-label="With textarea"> </textarea>
+                    </div>
+
+                    <!-- Issue button -->
+                    <button type="button" class="btn btn-info btn-block my-4" name="submit" id="submit" data-toggle="modal" data-target="#exampleModalCenter">
+                        ISSUE NOL
+                    </button>
+
+                </form>
+                <script type="text/javascript" src="js/autoFill.js"></script>
+                <!-- Default form login --> </div></div>
+
+
+
+
 
         <!-- Modal -->
         <div   class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             aria-hidden="true">
+               aria-hidden="true">
 
             <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -98,7 +172,7 @@
                     </div>
                     <div class="modal-body" id="nol" style="font-size: 12px">
                         <!-- Default form login -->
-                        <form class=" border border-light p-5" action="#!">
+                        <form id="nolform" class=" border border-light p-5" action="" method="post">
 
                             <p id="date" align="right" class="h8 mb-4"></p>
                             <br><br>
@@ -113,11 +187,11 @@
                                     Greetings, </p>
                                 <p>
                                     This is to confirm that Mr./Ms. 
-                                    <input type="text"  id="name" class="printInput"  placeholder=" Name">, 
-                                    holder of Nationality 
+                                    <input type="text" id="formname" name="formname" class="printInput"  value="<?php echo $_SESSION['name'] ?>"class="form-control"  placeholder=" Name">
+                                    , holder of Nationality 
                                     <input type="text"  id="nationality" class="printInput"   placeholder=" Nationality"> Passport Number 
                                     <input type="text"  id="passportnumber"  class="printInput"   placeholder=" Passport Number"> is working full time at Al Sanawbar School as an 
-                                    <input type="text"  id="jobtitle"  class="printInput"   placeholder=" Job Title">. 
+                                    <input type="text"  id="jobtitle" value="<?php echo $jobtitle ?>" class="printInput" placeholder=" Job Title">. 
                                     He has been employed since <input type="text"  id="joiningdate" class="printInput "   placeholder=" Joining Date"> with a total monthly salary of 
                                     AED (<input type="text"  id="amount"  class="printInput"   placeholder=" Amount in Figures"> ) 
                                     <input type="text"  id="amountwords"  class="printInput"   placeholder=" Amount in words">.
@@ -137,15 +211,10 @@
 
                                     <p>Sincerely,</p>
                                     <p>Ms Rima Sarieddine</p>
-                                    <p> Director</p>
-                                    <p>  Al Sanawbar School</p>
-
-
+                                    <p>Director</p>
+                                    <p>Al Sanawbar School</p>
                                 </div>
-
                             </div>
-
-
                         </form>
                         <!-- Default form login -->
                     </div>
@@ -187,5 +256,32 @@
         resizable(document.getElementById('passportnumber'), 7);
         resizable(document.getElementById('schooldecleration'), 7);
 
+
+
     </script>
+    <script type="text/javascript" src="js/autoFill.js"></script>
+
+
+    <!--
+        <script type="text/javascript">
+    
+            function change(name) { 
+    
+                if (name == ''){
+                    document.getElementById("name").innerHTML = "";
+                return;}
+                else{
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState === 4)
+                            document.getElementById("nolform").innerHTML = this.responseText;
+                    };
+                    xmlhttp.open("POST", "db/employeeDetails.php?name=" + name, false);
+                    xmlhttp.send();
+                }
+            }
+    
+    
+        </script>-->
+
 </html>
