@@ -5,24 +5,12 @@
 }
 
 
-.printInput
-{ padding-right:  0px;
-  border: 0;
-  margin-bottom:5px;
-  outline: none;
 
-}
 
-p, input { font-size: 14px;}
+p { font-size: 14px;}
 
 body{padding-top: 150px}
 
 .h5 {font-size: 30px;}
 
-input {
 
-    min-width:50px!important;
-    max-width:99.99%!important;
-    transition: width 0.25s;
-
-}

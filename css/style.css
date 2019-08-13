@@ -4,24 +4,21 @@
     src: url(sansation_light.woff);
 }
 
-
-
-.printInput
-{ 
-    /*border: 0;*/
-    padding-right:  0px;
-    overflow:visible;
-    margin-bottom:5px;
-    min-width:20%;
-    /*outline: none;*/
+.autoCamelCase{
+      text-transform: capitalize;
 
 }
 
-input {
 
+.printInput{
+    width: 100px;
+}
 
+/*input {
+
+    text-transform: capitalize;
     max-width:100%!important;
     transition: width 0.25s;
 
-}
+}*/
 
