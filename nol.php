@@ -11,6 +11,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $name = $row['name'];
             $empid = $row['id'];
             $jobtitle = $row['job_title'];
             $joiningdate = $row['joining_date'];
@@ -354,9 +355,9 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                                 <label id="objective"></label>. 
                                 Our organization has no objection regarding <?php
                                 if ($gender == 'f')
-                                    echo 'Ms.';
+                                    echo 'her';
                                 else
-                                    echo 'Mr.';
+                                    echo 'his';
                                 ?> 
                                 <label id="schooldeclaration"></label>.
                             </p>

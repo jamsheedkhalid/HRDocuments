@@ -1,7 +1,7 @@
 <?php
 
 function employee_details($name) {
-    $sql = " SELECT id, nationality_id, gender, job_title, joining_date, first_name from employees WHERE employee_number "
+    $sql = " SELECT concat(first_name,'', last_name) name, id, nationality_id, gender, job_title, joining_date, first_name from employees WHERE employee_number "
             . "LIKE '$name%' OR first_name LIKE '%$name%' OR middle_name LIKE '%$name%' "
             . "OR last_name LIKE '%$name%'  ";
 
