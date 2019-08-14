@@ -16,7 +16,15 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
             $joiningdate = $row['joining_date'];
             $firstname = $row['first_name'];
             $nationalityid = $row['nationality_id'];
+            $gender = $row['gender'];
         }
+    } else {
+        $empid = '';
+        $jobtitle = '';
+        $joiningdate = '';
+        $firstname = '';
+        $nationalityid = '';
+        $gender = '';
     }
 
     $nationality = employee_nationality($nationalityid, $conn);
@@ -94,7 +102,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                     Declaration Saved.
                 </div>
 
-            </div>    
+            </div> 
 
 
             <div class="d-flex" center>
@@ -210,24 +218,37 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 </div>                         
             </div>
 
-            <!-- Salary -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Salary </span>
-                </div>
-                <input  type="text"  id="printsalary"  onmousemove="words()" name="printsalary" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $salary ?>" >
-                <div class="invalid-feedback">
-                    Please Enter Salary.
-                </div>                         
-            </div>
 
-            <!-- Salary in words -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Salary in words </span>
-                </div>
-                <input  type="text"  id="printsalarywords"  name="printsalarywords" required class="form-control autoCamelCase"  >
+            <div id="restoresalary">
+                <div id='printsalarydiv' class="container">
+                    <div class="row"
+                         <!-- Salary -->
+                         <div id='printsalarydiv' class="input-group mb-3 col-md-10">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Salary </span>
+                            </div>
+                            <input  type="text"  id="printsalary"  onmousemove="words()" name="printsalary" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $salary ?>" >
+                            <div class="invalid-feedback">
+                                Please Enter Salary.
+                            </div>                        
+                        </div>
+                        <div class="col-md-2">
+                            <button id='nosalary' class="btn btn-sm  btn-danger" title='Hide Salary'> X</button> 
+                        </div>
+                    </div>
 
+                    <!-- Salary in words -->
+                    <div  class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Salary in words </span>
+                        </div>
+                        <input  type="text"  id="printsalarywords" required  name="printsalarywords" required class="form-control autoCamelCase"  >
+                        <div class="invalid-feedback">
+                            Please Enter Salary.
+                        </div>  
+                    </div>
+
+                </div>
             </div>
 
             <!-- Objective -->
@@ -235,7 +256,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Objective </span>
                 </div>
-                <input  type="text"  id="printobjective" name="printobjective" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $objective ?>" >
+                <textarea  type="text"  id="printobjective" name="printobjective" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" ><?php echo $objective ?></textarea>
                 <div class="invalid-feedback">
                     Please Enter Objective.
                 </div>                         
@@ -246,7 +267,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Declaration </span>
                 </div>
-                <input  type="text"  id="printdeclaration" name="printdeclaration" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $schooldecl ?>" >
+                <textarea  type="text"  id="printdeclaration" name="printdeclaration" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1"  ><?php echo $schooldecl ?></textarea>
                 <div class="invalid-feedback">
                     Please Enter Declaration.
                 </div>                         
@@ -254,12 +275,17 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
 
 
+            <div id="restoresalarybtn">
+            <button type="button" class="btn btn-primary btn-sm" name="showsalary" style="display: none" id="showsalary" >
+                USE SALARY
+            </button>
+               
 
-
-
-            <button type="button" class="btn btn-amber btn-sm" name="issuenol" id="issuenol" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-amber btn-sm" name="issuenol" onclick="check()" id="issuenol" data-toggle="modal" data-target="#exampleModalCenter">
                 ISSUE NOL
             </button>
+                
+                </div> 
         </form>
 
         <?php
@@ -307,21 +333,31 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                             <p>
                                 Greetings, </p>
                             <p>
-                                This is to confirm that Mr./Ms. 
+                                This is to confirm that <?php
+                                if ($gender == 'f')
+                                    echo 'Ms.';
+                                else
+                                    echo 'Mr.';
+                                ?>
                                 <label id='pname'></label>, holder of Nationality 
                                 <label id="nationality"></label> , Passport Number 
                                 <label id="passportnumber"></label> is working full time at 
                                 <label id="schoolname"></label> as an 
                                 <label id="jobtitle"></label>. He has been employed since 
-                                <label id="joiningdate"></label> with a total monthly salary of  
+                                <label id="joiningdate"></label>  
                                 <label id="salarywords"></label>
-                                (AED <label  id="salary"></label>).
+                                <label  id="salary"></label>
                             </p>
 
                             <p>
                                 <label id="firstname"></label> has expressed interest in
                                 <label id="objective"></label>. 
-                                Our organization has no objection regarding his\her 
+                                Our organization has no objection regarding <?php
+                                if ($gender == 'f')
+                                    echo 'Ms.';
+                                else
+                                    echo 'Mr.';
+                                ?> 
                                 <label id="schooldeclaration"></label>.
                             </p>
 
@@ -330,7 +366,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                             </p>
                             <br><br>
                         </div>
-                        <div align="left"> <!– this can be changed to "left" if preferred–>
+                        <div align="left"> 
 
                             <p>Sincerely,</p>
                             <p>Ms Rima Sarieddine</p>
@@ -351,11 +387,6 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 </div>
 
 
-<script>
-    var d = new Date();
-    document.getElementById("date").innerHTML = d.toDateString();
-
-</script>
 
 
 <!--form validation-->
@@ -367,7 +398,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
             var forms = document.getElementsByClassName('needs-validation');
 // Loop over them and prevent submission
             var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
+                form.addEventListener('click', function (event) {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -379,17 +410,19 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
     })();
 </script>
 
+
 <script>
     $('#issuenol').click(function () {
         var to = document.getElementById('printfwdto').value;
         document.getElementById('toaddress').textContent = to;
+
 
         var schoolname = document.getElementById('printschool').value;
         document.getElementById('schoolname').textContent = schoolname;
 
         var name = document.getElementById('printname').value;
         document.getElementById('pname').textContent = name;
-        
+
         var passportnumber = document.getElementById('printpassport').value;
         document.getElementById('passportnumber').textContent = passportnumber;
 
@@ -404,10 +437,10 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
         document.getElementById('joiningdate').textContent = joiningdate;
 
         var salary = document.getElementById('printsalary').value;
-        document.getElementById('salary').textContent = salary;
+        document.getElementById('salary').textContent = '(AED ' + salary + ').';
 
         var salarywords = document.getElementById('printsalarywords').value;
-        document.getElementById('salarywords').textContent = salarywords;
+        document.getElementById('salarywords').textContent = 'with a total monthly salary of ' + salarywords;
 
 
         var firstname = document.getElementById('printfirstname').value;
@@ -453,11 +486,11 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
         if (nums.length == 2) {
             var fraction = inWords(nums[1]);
             if (fraction != '')
-                return whole + dhs + fraction + ' Fils';
+                return  whole + dhs + fraction + ' Fils';
             else
-                return whole + dhs;
+                return  whole + dhs ;
         } else {
-            return whole + dhs;
+            return  whole + dhs ;
         }
     }
 
@@ -468,6 +501,26 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
     function words() {
         document.getElementById('printsalarywords').value = withDecimal(document.getElementById('printsalary').value);
     }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#nosalary").click(function () {
+            document.getElementById('salary').textContent = '.';
+            document.getElementById('salarywords').textContent = '';
+            x = $('#printsalarydiv').detach();
+            $("#showsalary").show();
+            $("#restoresalarybtn").prepend(y);
+        });
+
+        $("#showsalary").click(function () {
+            $("#restoresalary").prepend(x);
+            y = $('#showsalary').detach();  
+        });
+
+
+
+    });
 </script>
 
 <script type="text/javascript" src="js/autoFill.js"></script>
