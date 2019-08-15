@@ -277,16 +277,16 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
 
             <div id="restoresalarybtn">
-            <button type="button" class="btn btn-primary btn-sm" name="showsalary" style="display: none" id="showsalary" >
-                USE SALARY
-            </button>
-               
+                <button type="button" class="btn btn-primary btn-sm" name="showsalary" style="display: none" id="showsalary" >
+                    USE SALARY
+                </button>
 
-            <button type="button" class="btn btn-amber btn-sm" name="issuenol" onclick="check()" id="issuenol" data-toggle="modal" data-target="#exampleModalCenter">
-                ISSUE NOL
-            </button>
-                
-                </div> 
+
+                <button type="button" class="btn btn-amber btn-sm" name="issuenol" onclick="check()" id="issuenol" data-toggle="modal" data-target="#nolModalCenter">
+                    ISSUE NOL
+                </button>
+
+            </div> 
         </form>
 
         <?php
@@ -302,7 +302,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
 
 <!-- Modal -->
-<div   class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div   class="modal fade " id="nolModalCenter" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle"
        aria-hidden="true">
 
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
@@ -387,6 +387,11 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
     </div>
 </div>
 
+<script>
+    var d = new Date();
+    document.getElementById("date").innerHTML = d.toDateString();
+
+</script>
 
 
 
@@ -489,9 +494,9 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
             if (fraction != '')
                 return  whole + dhs + fraction + ' Fils';
             else
-                return  whole + dhs ;
+                return  whole + dhs;
         } else {
-            return  whole + dhs ;
+            return  whole + dhs;
         }
     }
 
@@ -516,7 +521,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
         $("#showsalary").click(function () {
             $("#restoresalary").prepend(x);
-            y = $('#showsalary').detach();  
+            y = $('#showsalary').detach();
         });
 
 
