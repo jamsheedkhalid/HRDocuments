@@ -79,11 +79,16 @@ session_start();
                 if (document.getElementById('radionol').checked) {
 
                     document.getElementById('nolform').style.display = 'inline';
+                    document.getElementById('printsalary').style.display = 'none'
                     document.getElementById('printnol').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
+                   
                 } else {
+
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
+                    document.getElementById('printsalary').style.display = 'none';
                 }
             }
 
@@ -91,9 +96,9 @@ session_start();
             function yesnoCheckSalary() {
                 if (document.getElementById('radiosalary').checked) {
                     document.getElementById('salaryform').style.display = 'inline';
+                    document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
-
                     document.getElementById('printsalary').style.display = 'none';
                 } else {
                     document.getElementById('nolform').style.display = 'none';
