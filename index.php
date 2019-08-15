@@ -49,7 +49,7 @@ session_start();
                 </div>
                 <div class="col-sm-2">
                     <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" id="radiosalary" name="radios">
+                        <input type="radio" class="custom-control-input" onclick="yesnoCheckSalary();" id="radiosalary" name="radios">
                         <label class="custom-control-label" for="radiosalary">Salary Certificate</label>
                     </div>
                 </div>
@@ -69,19 +69,41 @@ session_start();
         </div>
 
         <?php include 'nol.php'; ?>
+        <?php include 'salary.php'; ?>
 
 
         <script type="text/javascript">
 
+
             function yesnoCheckNol() {
                 if (document.getElementById('radionol').checked) {
+
                     document.getElementById('nolform').style.display = 'inline';
                     document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
                 } else {
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
                 }
             }
+
+
+            function yesnoCheckSalary() {
+                if (document.getElementById('radiosalary').checked) {
+                    document.getElementById('salaryform').style.display = 'inline';
+                    document.getElementById('nolform').style.display = 'none';
+                    document.getElementById('printnol').style.display = 'none';
+
+                    document.getElementById('printsalary').style.display = 'none';
+                } else {
+                    document.getElementById('nolform').style.display = 'none';
+                    document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
+                    document.getElementById('printsalary').style.display = 'none';
+                }
+            }
+
+
         </script>
 
 
