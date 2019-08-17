@@ -95,7 +95,7 @@ if (isset($_POST['submitgratuity']) && ($_POST['gratuityname'] !== '')) {
 <div id="gratuitycalcdiv" class="container"  >
     <div class="row">
         <div class="col"></div>
-        <div  class="col-6" >
+        <div  class="col-10" >
 
 
             <form id="gratuitycalcform" class=" needs-validation " nonvalidate>
