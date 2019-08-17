@@ -38,9 +38,12 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
 ?>
 
 <!-- Salary Form --> 
-<div class="container" style="padding: 20px;" id="salarycontainer"  >
+<div class="container"id="salarycontainer"  >
     <div class="row">
-        <form  id="salaryform" class="text-center border needs-validation  border-light p-5 col-md-6" action="#!" method="post"  novalidate>
+        
+        <div class="col"></div>
+        <div class="col-6">
+        <form  id="salaryform" class="text-center  needs-validation " action="#!" method="post"  novalidate>
 
             <p class="h4 mb-4">SALARY CERTIFICATE</p>
 
@@ -87,6 +90,8 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
             </div>
 
         </form>
+            </div>
+        <div class="col"></div>
 
 
         <script type="text/javascript" src="js/autoFillSalary.js"></script>
@@ -97,7 +102,9 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
     <!-- NOL Form --> 
 
     <div id='printsalary' class="row" >
-        <form   class="text-center border needs-validation  border-light p-5 col-md-6" novalidate>
+        <div class="col"></div>
+        <div class="col-6">
+        <form   class="text-center  needs-validation " novalidate>
 
             <p class="h4 mb-4">SALARY CERTIFICATE</p>
 
@@ -219,7 +226,9 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
             </button>
 
 
-        </form>
+        </form></div>
+         <div class="col"></div>
+        
 
         <?php
         $salarybtnactive = 0; 

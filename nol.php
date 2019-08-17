@@ -41,93 +41,98 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 <!-- NOL Form --> 
 <div class="container" style="padding: 20px;" id="nolcontainer"  >
     <div class="row">
-        <form  id="nolform" class="text-center border needs-validation  border-light p-5 col-md-6" action="#!" method="post"  novalidate>
+        <div class="col"></div>
+        <div class="col-6">
+            <form  id="nolform" class="text-center  needs-validation  " action="#!" method="post"  novalidate>
 
-            <p class="h4 mb-4">NO OBJECTION LETTER</p>
+                <p class="h4 mb-4">NO OBJECTION LETTER</p>
 
-            <!-- Name -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Forwading To</span>
-                </div>
-                <input  type="text" list="display" style="max-height: fit-content"id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
-                <div class="invalid-feedback">
-                    Please Enter Address.
-                </div>
-                <div class="valid-feedback">
-                    Address Saved.
-                </div>
-
-            </div>
-
-
-            <!-- Name -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Employee</span>
-                </div>
-                <input type="text" list="display" id="name" name="name" required  class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
-                <datalist  id="display"></datalist >
-                <div class="valid-feedback">
-                    Employee Details Fetched.
-                </div>
-                <div class="invalid-feedback">
-                    Please Choose Employee.
-                </div>
-            </div>
-
-            <!-- Intrest -->
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px;">Objective</span>
-                </div>
-                <textarea type="text" id="inputobjective" required name="inputobjective"class="form-control autoCamelCase" aria-label="With textarea"></textarea>
-                <div class="invalid-feedback">
-                    Please Enter Objective.
-                </div>
-                <div class="valid-feedback">
-                    Objective Saved.
-                </div>
-
-            </div>
-            <!-- School Declration -->
-            <div class="input-group" style="padding-top: 20px">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px;">School Declaration</span>
-                </div>
-                <textarea required type="text" id="inputdeclaration"  name="inputdeclaration" class="form-control autoCamelCase" aria-label="With textarea"></textarea>
-                <div class="invalid-feedback">
-                    Please Enter No Objection Declaration.
-                </div>
-                <div class="valid-feedback">
-                    Declaration Saved.
-                </div>
-
-            </div> 
-
-
-            <div class="d-flex" center>
-                <div style="padding-right: 20px" >
-                    <button type="submit" class="btn btn-primary btn-sm" name="nolsubmit" id="nolsubmit" >
-                        SUBMIT
-                    </button>
-                </div>
-                <div> 
+                <!-- Name -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Forwading To</span>
+                    </div>
+                    <input  type="text" list="display" style="max-height: fit-content"id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                    <div class="invalid-feedback">
+                        Please Enter Address.
+                    </div>
+                    <div class="valid-feedback">
+                        Address Saved.
+                    </div>
 
                 </div>
-            </div>
 
-        </form>
+
+                <!-- Name -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Employee</span>
+                    </div>
+                    <input type="text" list="display" id="name" name="name" required  class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                    <datalist  id="display"></datalist >
+                    <div class="valid-feedback">
+                        Employee Details Fetched.
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Choose Employee.
+                    </div>
+                </div>
+
+                <!-- Intrest -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="font-size: 12px;">Objective</span>
+                    </div>
+                    <textarea type="text" id="inputobjective" required name="inputobjective"class="form-control autoCamelCase" aria-label="With textarea"></textarea>
+                    <div class="invalid-feedback">
+                        Please Enter Objective.
+                    </div>
+                    <div class="valid-feedback">
+                        Objective Saved.
+                    </div>
+
+                </div>
+                <!-- School Declration -->
+                <div class="input-group" style="padding-top: 20px">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="font-size: 12px;">School Declaration</span>
+                    </div>
+                    <textarea required type="text" id="inputdeclaration"  name="inputdeclaration" class="form-control autoCamelCase" aria-label="With textarea"></textarea>
+                    <div class="invalid-feedback">
+                        Please Enter No Objection Declaration.
+                    </div>
+                    <div class="valid-feedback">
+                        Declaration Saved.
+                    </div>
+
+                </div> 
+
+
+                <div class="d-flex" center>
+                    <div style="padding-right: 20px" >
+                        <button type="submit" class="btn btn-primary btn-sm" name="nolsubmit" id="nolsubmit" >
+                            SUBMIT
+                        </button>
+                    </div>
+                    <div> 
+
+                    </div>
+                </div>
+
+            </form></div>
+        <div class="col"></div>
 
 
         <script type="text/javascript" src="js/autoFill.js"></script>
         <!-- Default form login --> </div></div>
-<?php  if($nolbtnactive == 1){ ?>
+<?php if ($nolbtnactive == 1) { ?>
 
     <!-- NOL Form --> 
 
     <div id='printnol' class="row">
-        <form   class="text-center border needs-validation  border-light p-5 col-md-6" novalidate>
+        <div class="col"></div>
+        <div class="col-6">
+        <form   class="text-center  needs-validation  " novalidate>
 
             <p class="h4 mb-4">NO OBJECTION LETTER</p>
 
@@ -287,7 +292,8 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 </button>
 
             </div> 
-        </form>
+        </form></div>
+        <div class="col"></div>
 
         <?php
         $nolbtnactive = 0;
