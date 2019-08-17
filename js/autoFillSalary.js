@@ -1,19 +1,19 @@
 //Getting value from "ajax.php".
 function fill(Value) {
    //Assigning value to "employeeName" div in "employeeName.php" file.
-   $('#name').val(Value);
+   $('#salaryname').val(Value);
    //Hiding "display" div in "employeeName.php" file.
    $('#display').hide();
 }
 $(document).ready(function() {
    //On pressing a key on "Search box" in "employeeName.php" file. This function will be called.
-   $("#name").keyup(function() {
+   $("#salaryname").keyup(function() {
        //Assigning employeeName box value to javascript variable named as "name".
-       var name = $('#name').val();
+       var name = $('#salaryname').val();
        //Validating, if "name" is empty.
        if (name == "") {
            //Assigning empty value to "display" div in "employeeName.php" file.
-           $("#display").html("");
+           $("#salarydisplay").html("");
        }
        //If name is not empty.
        else {
@@ -32,7 +32,7 @@ $(document).ready(function() {
                //If result found, this funtion will be called.
                success: function(html) {
                    //Assigning result to "display" div in "employeeName.php" file.
-                   $("#display").html(html).show();
+                   $("#salarydisplay").html(html).show();
                }
            });
        }

@@ -25,7 +25,7 @@ if (isset($_POST['name'])) {
         <li onclick='fill("<?php echo $Result['Name']; ?>")'>
             <a>
                 <!-- Assigning searched result in "Search box" in "search.php" file. -->
-                <?php echo "<option value=".$Result['Name'].">"; ?>
+                <?php echo "<option style='color:red' value=".$Result['Name'].">"; ?>
         </li></a>
         <!-- Below php code is just for closing parenthesis. Don't be confused. -->
         <?php

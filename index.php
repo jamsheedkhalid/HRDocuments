@@ -13,6 +13,7 @@ session_start();
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 
         <!-- Style sheet -->
+        <link rel="stylesheet" href="css/metrostyle.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="vendor/print/print.min.css">
         <!-- Font Awesome -->
@@ -21,6 +22,9 @@ session_start();
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
+
+        <!--<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro.min.css">-->
+
 
         <!-- JQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -55,7 +59,7 @@ session_start();
                 </div>
                 <div class="col-sm-2">
                     <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" id="radiogratuity" name="radios">
+                        <input type="radio" class="custom-control-input" onclick="yesnoCheckGratuity();" id="radiogratuity" name="radios">
                         <label class="custom-control-label" for="radiogratuity">Gratuity Report</label>
                     </div>
                 </div>
@@ -70,6 +74,7 @@ session_start();
 
         <?php include 'nol.php'; ?>
         <?php include 'salary.php'; ?>
+        <?php include 'gratuity.php'; ?>
 
 
         <script type="text/javascript">
@@ -77,37 +82,67 @@ session_start();
 
             function yesnoCheckNol() {
                 if (document.getElementById('radionol').checked) {
-
+                    
                     document.getElementById('nolform').style.display = 'inline';
-                    document.getElementById('printsalary').style.display = 'none'
-                    document.getElementById('printnol').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
-                   
+                    document.getElementById('gratuitydiv').style.display = 'none';
+                    
+                    document.getElementById('printsalary').style.display = 'none';
+                    document.getElementById('gratuitycalcdiv').style.display = 'none';
+                    
+
                 } else {
 
                     document.getElementById('nolform').style.display = 'none';
-                    document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
-                    document.getElementById('printsalary').style.display = 'none';
                 }
             }
 
 
             function yesnoCheckSalary() {
+                
                 if (document.getElementById('radiosalary').checked) {
                     document.getElementById('salaryform').style.display = 'inline';
-                    document.getElementById('printsalary').style.display = 'none';
+                    document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
+                    
                     document.getElementById('printnol').style.display = 'none';
-                    document.getElementById('printsalary').style.display = 'none';
+                    document.getElementById('gratuitycalcdiv').style.display = 'none';
+                    
                 } else {
+
                     document.getElementById('nolform').style.display = 'none';
-                    document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
-                    document.getElementById('printsalary').style.display = 'none';
                 }
             }
 
+            function yesnoCheckGratuity() {
+                if (document.getElementById('radiogratuity').checked) {
+                    
+                    document.getElementById('gratuitydiv').style.display = 'inline';
+                    document.getElementById('nolform').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
+                    
+                    document.getElementById('printsalary').style.display = 'none';
+                    document.getElementById('printnol').style.display = 'none';
+
+
+                } else {
+                    document.getElementById('nolform').style.display = 'none';
+                    document.getElementById('gratuitydiv').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
+                }
+            }
+
+            window.onload = function () {
+                document.getElementById('nolform').style.display = 'none';
+                document.getElementById('gratuitydiv').style.display = 'none';
+
+                document.getElementById('salaryform').style.display = 'none';
+                
+            };
 
         </script>
 
@@ -116,4 +151,7 @@ session_start();
 
 
     </body>
+    <script src="js/calender.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>-->
 </html>

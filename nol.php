@@ -41,7 +41,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 <!-- NOL Form --> 
 <div class="container" style="padding: 20px;" id="nolcontainer"  >
     <div class="row">
-        <form  id="nolform" class="text-center border needs-validation  border-light p-5 col-md-6" action="#!" method="post" style="display: none" novalidate>
+        <form  id="nolform" class="text-center border needs-validation  border-light p-5 col-md-6" action="#!" method="post"  novalidate>
 
             <p class="h4 mb-4">NO OBJECTION LETTER</p>
 
@@ -50,7 +50,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Forwading To</span>
                 </div>
-                <input  type="text" list="display" id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                <input  type="text" list="display" style="max-height: fit-content"id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
                 <div class="invalid-feedback">
                     Please Enter Address.
                 </div>
@@ -122,7 +122,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
         <script type="text/javascript" src="js/autoFill.js"></script>
         <!-- Default form login --> </div></div>
-<?php if ($nolbtnactive == 1) { ?>
+<?php  if($nolbtnactive == 1){ ?>
 
     <!-- NOL Form --> 
 
