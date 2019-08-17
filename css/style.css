@@ -9,10 +9,15 @@
 
 }
 
+.today{
+    color:red;
+}
 
 .printInput{
     width: 100px;
 }
+
+.gratuity{display: none;}
 
 /*input {
 

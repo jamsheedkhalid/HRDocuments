@@ -1,7 +1,7 @@
 <?php
 
 function employee_details($name) {
-    $sql = " SELECT concat(first_name,'', last_name) name, id, nationality_id, gender, job_title, joining_date, first_name from employees WHERE employee_number "
+    $sql = " SELECT concat(first_name,'', last_name) name, employee_number, id, nationality_id, gender, job_title, joining_date, first_name from employees WHERE employee_number "
             . "LIKE '$name%' OR first_name LIKE '%$name%' OR middle_name LIKE '%$name%' "
             . "OR last_name LIKE '%$name%'  ";
 
@@ -55,4 +55,54 @@ function salary($employeeid, $conn) {
     } else
         $salary = '';
     return $salary;
+}
+
+function salary_structure($empid, $conn) {
+    $sql = "SELECT id from employee_salary_structures WHERE employee_id = '$empid'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $structure_id = $row['id'];
+        }
+        $basic = salary_structure_component($structure_id, $conn);
+    } else
+        $basic = 0;
+    return $basic;
+}
+
+function salary_structure_component($structure_id, $conn) {
+    $sql = "SELECT amount FROM employee_salary_structure_components WHERE "
+            . "employee_salary_structure_id = '$structure_id' AND payroll_category_id = 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $basic = $row['amount'];
+        }
+    } else
+        $basic = 0;
+    return $basic;
+}
+
+function calculate_days($start_date, $end_date) {
+    $start_date = strtotime($start_date);
+    $end_date = strtotime($end_date);
+
+    return(($end_date - $start_date) / 60 / 60 / 24);
+}
+
+function calculate_gratuity($days, $basic) {
+    $years = $days / 365;
+
+    if ($years >= 5)
+        $gratuitypay = ($basic * 21 * $years) / 30;
+
+    else if ($years >= 3 && $years < 5)
+        $gratuitypay = ($basic * 14 * $years) / 30;
+
+    else if ($years >= 1 && $years < 3)
+        $gratuitypay = ($basic * 7 * $years ) / 30;
+    else
+        $gratuitypay = 0;
+
+    return $gratuitypay;
 }

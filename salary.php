@@ -1,7 +1,7 @@
 <?php
 $salarybtnactive = 0;
-if (isset($_POST['salarysubmit']) && ($_POST['name'] !== '')) {
-    $name = $_POST['name'];
+if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
+    $name = $_POST['salaryname'];
     $to = $_POST['fwdto'];
 
 
@@ -40,7 +40,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['name'] !== '')) {
 <!-- Salary Form --> 
 <div class="container" style="padding: 20px;" id="salarycontainer"  >
     <div class="row">
-        <form  id="salaryform" class="text-center border needs-validation  border-light p-5 col-md-6" action="#!" method="post" style="display: none" novalidate>
+        <form  id="salaryform" class="text-center border needs-validation  border-light p-5 col-md-6" action="#!" method="post"  novalidate>
 
             <p class="h4 mb-4">SALARY CERTIFICATE</p>
 
@@ -49,7 +49,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['name'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Forwading To</span>
                 </div>
-                <input  type="text" list="display" id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                <input  type="text" id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
                 <div class="invalid-feedback">
                     Please Enter Address.
                 </div>
@@ -65,8 +65,8 @@ if (isset($_POST['salarysubmit']) && ($_POST['name'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Employee</span>
                 </div>
-                <input type="text" list="display" id="name" name="name" required  class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
-                <datalist  id="display"></datalist >
+                <input type="text" list="salarydisplay" id="salaryname" name="salaryname" required  class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                <datalist  id="salarydisplay"></datalist >
                 <div class="valid-feedback">
                     Employee Details Fetched.
                 </div>
@@ -89,14 +89,14 @@ if (isset($_POST['salarysubmit']) && ($_POST['name'] !== '')) {
         </form>
 
 
-        <script type="text/javascript" src="js/autoFill.js"></script>
+        <script type="text/javascript" src="js/autoFillSalary.js"></script>
         <!-- Default form login --> </div></div>
 
-<?php if ($salarybtnactive == 1) { ?>
+<?php  if ($salarybtnactive == 1){ ?>
 
     <!-- NOL Form --> 
 
-    <div id='printsalary' class="row">
+    <div id='printsalary' class="row" >
         <form   class="text-center border needs-validation  border-light p-5 col-md-6" novalidate>
 
             <p class="h4 mb-4">SALARY CERTIFICATE</p>
@@ -222,7 +222,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['name'] !== '')) {
         </form>
 
         <?php
-        $salarybtnactive = 0;
+        $salarybtnactive = 0; 
     }
     ?>
 </div>
