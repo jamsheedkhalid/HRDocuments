@@ -46,30 +46,35 @@ checkLoggedIn()
 
         <div class="container" style="padding: 20px">
             <div class="row">
+                <?php if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 2){?>
                 <div class="col-sm-1">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckNol();" id="radionol" name="radios">
                         <label class="custom-control-label" for="radionol">NOL</label>
                     </div>
                 </div>
+                <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
                 <div class="col-sm-2">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckSalary();" id="radiosalary" name="radios">
                         <label class="custom-control-label" for="radiosalary">Salary Certificate</label>
                     </div>
                 </div>
+                <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
                 <div class="col-sm-2">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckGratuity();" id="radiogratuity" name="radios">
                         <label class="custom-control-label" for="radiogratuity">Gratuity Report</label>
                     </div>
                 </div>
+                <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
                 <div class="col-sm-2">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" id="radiofee" name="radios">
                         <label class="custom-control-label" for="radiofee">Fee Certificate</label>
                     </div>
                 </div>
+                <?php } ?>
                 <div class="col-sm-2">
                     <form action="logout.php" style="float: right;padding-top: 5px; padding-right: 10px;margin-left: 5px" >
                         <button  type ='submit' href='logout.php' class="btn btn-danger btn-sm">

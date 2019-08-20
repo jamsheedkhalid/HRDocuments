@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$_SESSION['HR_FIN'] = 0;
 if (isset($_SESSION['login']))
     header('Location: certificates.php');
  ?>
