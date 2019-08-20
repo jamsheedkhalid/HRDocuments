@@ -191,7 +191,7 @@ if (isset($_POST['submitgratuity']) && ($_POST['gratuityname'] !== '')) {
 
 
 
-                <!--<button class="btn btn-info btn-block my-4" name="printgratuity" type="button" onclick="printJS({printable: 'gratuitycalcformprint', type: 'html', header: null, css: 'css/print.css'})">Print</button>-->
+                <button class="btn btn-info btn-block my-4" name="printgratuity" type="button" onclick="printJS({printable: 'gratuitycalcform', type: 'html', header: null, css: 'css/print.css'})">Print</button>
 
             </form>
             

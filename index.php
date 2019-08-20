@@ -1,157 +1,245 @@
 <?php
-include('config/dbConfig.php');
-include_once 'functions.php';
+
 session_start();
-?>
+if (isset($_SESSION['login']))
+    header('Location: certificates.php');
+ ?>
 
-<html lang="en">
-    <head>
-        <title>HR Documents - InDepth</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://s3.amazonaws.com/api_play/src/js/jquery-2.1.1.min.js"></script> 
+    <script src="https://s3.amazonaws.com/api_play/src/js/vkbeautify.0.99.00.beta.js"></script>
+    <!--===============================================================================================-->	
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->	
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->	
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
 
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-
-        <!-- Style sheet -->
-        <link rel="stylesheet" href="css/metrostyle.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="vendor/print/print.min.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
-
-        <!--<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro.min.css">-->
 
 
-        <!-- JQuery -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
-        <!--print-->
-        <script src="vendor/print/print.min.js"></script>
-        <script src="js/jquery.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/autoFill.js"></script>
-    </head>
+    <script>
+        $(function () {
+            $("#generate-button").click(function () {
+                var instanceurl = $("#instanceurl").val();
+                var client_id = $("#client_id").val();
+                var client_secret = $("#client_secret").val();
+                var redirect_uri = $("#redirect_uri").val();
+                var username = $("#username").val();
+                var password = $("#password").val();
+                if (username !== "" || password !== "")
 
-    <body>
+                {
+                    var token_input = $("#token");
+                    var result_div = $("#result");
+                    document.getElementById("iurl").value = document.getElementById("instanceurl").value;
+                    generate_token(instanceurl, client_id, client_secret, redirect_uri, username, password, token_input, result_div);
+                }
+            });
+        });
+    </script>
 
-        <div class="container" style="padding: 20px">
-            <div class="row">
-                <div class="col-sm-1">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" onclick="yesnoCheckNol();" id="radionol" name="radios">
-                        <label class="custom-control-label" for="radionol">NOL</label>
+    <script>
+        function generate_token(instanceurl, client_id, client_secret, redirect_uri, username, password, token_input, result_div) {
+            token_input.val("");
+            result_div.html("");
+            try
+            {
+                var xmlDoc;
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", instanceurl + "/oauth/token", true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function (e)
+                {
+                    if (xhr.readyState === 4)
+                    {
+                        var a = JSON.parse(e.target.responseText);
+                        token_input.val(a["access_token"]);
+                        if (token_input.val() !== "")
+                        {   document.getElementById('invalidCredentials').style.display = 'none';
+
+                            $('#welcome-modal').modal('show');
+                            setTimeout(function () {
+                                $('#welcome-modal').modal('hide');
+                            }, 6000);
+                            document.getElementById("generate-report").click();
+                        } else
+                             document.getElementById('invalidCredentials').style.display = 'inline';
+
+                        result_div.html(show_response(e.target.responseText));
+                        xmlDoc = this.responseText;
+                        txt = "";
+                    }
+
+
+                };
+                xhr.send("client_id=" + client_id + "&client_secret=" + client_secret + "&grant_type=password&username=" + username + "&password=" + password + "&redirect_uri=" + redirect_uri);
+            } catch (err)
+            {
+                alert(err.message);
+            }
+        }
+        ;
+
+        function show_response(str) {
+            str = vkbeautify.xml(str, 4);
+            return str.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br />");
+        }
+        ;
+
+        function validateForm() {
+            var x = document.forms["frm"]["token"].value;
+            if (x === "") {
+                alert("Generate an access token first");
+                return false;
+            }
+        }
+        ;
+    </script>
+</head>
+<body>
+
+    <!--API Connecting with demo--> 
+    <input  id="instanceurl" type="hidden" name="instanceurl" value="http://demo.indepth.ae"/>
+    <input  id="client_id" type="hidden" value="00f4e2946c95694ac4c4cb86d44a4b48ab7281f94faf95ec2c6d181d50db801d"/>
+    <input  id="client_secret" type="hidden" value="819793f943fbc9a2320cd87a824e5ad29e51bb0ae77699ed91956a8f995e7719"/>
+    <input  id="redirect_uri" type="hidden" value="http://reports.demo.indepth.ae"/>
+
+
+
+
+
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+                <form class="login100-form validate-form flex-sb flex-w" onsubmit = "event.preventDefault();">
+                    <span class="login100-form-title p-b-32">
+                        CERTIFICATE CENTER
+                    </span>
+                      <?php
+                    if (isset($_SESSION['notloggedin'])) {
+                        ?>
+
+                        <div id='noaccess' class="alert alert-warning wrap-input100  m-b-12">
+                            <strong>Not Logged in!</strong> Please login first to continue.
+                        </div>
+
+                        <?php
+                        unset($_SESSION['notloggedin']);
+                    }
+                    ?>
+
+                    <?php
+                    if (isset($_SESSION['noaccess'])) {
+                        ?>
+
+                        <div id='noaccess' class="alert alert-danger wrap-input100  m-b-12">
+                            <strong>Unauthorized!</strong> You are unauthorized to use this system. <br>Only authorized staffs have the access. <br>Please contact system administrator.
+                        </div>
+
+                        <?php
+                        unset($_SESSION['noaccess']);
+                    }
+                    ?>
+                     <div id='invalidCredentials' class="alert alert-danger wrap-input100  m-b-12" style="display: none;">
+                        <strong>Invalid!</strong> Username/Password is inavlid.
                     </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" onclick="yesnoCheckSalary();" id="radiosalary" name="radios">
-                        <label class="custom-control-label" for="radiosalary">Salary Certificate</label>
+                    <span class="txt1 p-b-11">
+                        Username
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+                        <input class="input100"   id="username" type="text" placeholder="Username" autofocus/>
+                        <span class="focus-input100"></span>
                     </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" onclick="yesnoCheckGratuity();" id="radiogratuity" name="radios">
-                        <label class="custom-control-label" for="radiogratuity">Gratuity Report</label>
+
+                    <span class="txt1 p-b-11">
+                        Password
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+                        <span class="btn-show-pass">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        <input class="input100"  id="password" type="password" placeholder="Password"/>
+                        <span class="focus-input100"></span>
                     </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" id="radiofee" name="radios">
-                        <label class="custom-control-label" for="radiofee">Fee Certificate</label>
+
+                    <div class="flex-sb-m w-full p-b-48">
+
                     </div>
-                </div>
+
+                    <div class="container-login100-form-btn">
+                        <input class="login100-form-btn" type= "submit" id="generate-button" value ="Login" >
+                    </div>
+
+                </form>
             </div>
         </div>
 
-        <?php include 'nol.php'; ?>
-        <?php include 'salary.php'; ?>
-        <?php include 'gratuity.php'; ?>
+    </div>
+    <form name="frm" onsubmit="return validateForm()" action="login.php" method="POST" style="display: none">
+        <input id="token" type="hidden" name="token">
+        <input id="iurl" type="hidden" name="iurl">
+        <input id="user"  name="user">
+        <input type= "submit" id="generate-report" value ="Generate Reports">
+    </form>
+    <div id="welcome-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p style="text-align: center"><strong> Successfully Logged in. </strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-        <script type="text/javascript">
-
-
-            function yesnoCheckNol() {
-                if (document.getElementById('radionol').checked) {
-                    
-                    document.getElementById('nolform').style.display = 'inline';
-                    document.getElementById('salaryform').style.display = 'none';
-                    document.getElementById('gratuitydiv').style.display = 'none';
-                    
-                    document.getElementById('printsalary').style.display = 'none';
-                    document.getElementById('gratuitycalcdiv').style.display = 'none';
-                    
-
-                } else {
-
-                    document.getElementById('nolform').style.display = 'none';
-                    document.getElementById('gratuitydiv').style.display = 'none';
-                    document.getElementById('salaryform').style.display = 'none';
-                }
-            }
-
-
-            function yesnoCheckSalary() {
-                
-                if (document.getElementById('radiosalary').checked) {
-                    document.getElementById('salaryform').style.display = 'inline';
-                    document.getElementById('gratuitydiv').style.display = 'none';
-                    document.getElementById('nolform').style.display = 'none';
-                    
-                    document.getElementById('printnol').style.display = 'none';
-                    document.getElementById('gratuitycalcdiv').style.display = 'none';
-                    
-                } else {
-
-                    document.getElementById('nolform').style.display = 'none';
-                    document.getElementById('gratuitydiv').style.display = 'none';
-                    document.getElementById('salaryform').style.display = 'none';
-                }
-            }
-
-            function yesnoCheckGratuity() {
-                if (document.getElementById('radiogratuity').checked) {
-                    
-                    document.getElementById('gratuitydiv').style.display = 'inline';
-                    document.getElementById('nolform').style.display = 'none';
-                    document.getElementById('salaryform').style.display = 'none';
-                    
-                    document.getElementById('printsalary').style.display = 'none';
-                    document.getElementById('printnol').style.display = 'none';
-
-
-                } else {
-                    document.getElementById('nolform').style.display = 'none';
-                    document.getElementById('gratuitydiv').style.display = 'none';
-                    document.getElementById('salaryform').style.display = 'none';
-                }
-            }
-
-            window.onload = function () {
-                document.getElementById('nolform').style.display = 'none';
-                document.getElementById('gratuitydiv').style.display = 'none';
-
-                document.getElementById('salaryform').style.display = 'none';
-                
-            };
-
-        </script>
+    <script>
 
 
 
-
-
-    </body>
-    <script src="js/calender.js"></script>
-<!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>-->
+        var input = document.getElementById("password");
+        input.addEventListener("keyup", function (event) {
+            document.getElementById("user").value = document.getElementById("username").value;
+            if (event.keyCode === 13)
+                document.getElementById("generate-button").click();
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+</body>
 </html>
+
