@@ -61,14 +61,14 @@ checkLoggedIn()
                     </div>
                 </div>
                 <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
-                <div class="col-sm-2">
+                <div class="col-sm-2" hidden>
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckGratuity();" id="radiogratuity" name="radios">
                         <label class="custom-control-label" for="radiogratuity">Gratuity Report</label>
                     </div>
                 </div>
                 <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
-                <div class="col-sm-2">
+                <div class="col-sm-2" hidden>
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" id="radiofee" name="radios">
                         <label class="custom-control-label" for="radiofee">Fee Certificate</label>
@@ -92,72 +92,50 @@ checkLoggedIn()
 
 
         <script type="text/javascript">
-
-
             function yesnoCheckNol() {
                 if (document.getElementById('radionol').checked) {
-
                     document.getElementById('nolform').style.display = 'inline';
                     document.getElementById('salaryform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
-
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
-
-
                 } else {
-
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
                 }
             }
-
-
             function yesnoCheckSalary() {
-
                 if (document.getElementById('radiosalary').checked) {
                     document.getElementById('salaryform').style.display = 'inline';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
-
                     document.getElementById('printnol').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
-
                 } else {
-
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
                 }
             }
-
             function yesnoCheckGratuity() {
                 if (document.getElementById('radiogratuity').checked) {
-
                     document.getElementById('gratuitydiv').style.display = 'inline';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
-
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
-
-
                 } else {
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
                 }
             }
-
             window.onload = function () {
                 document.getElementById('nolform').style.display = 'none';
                 document.getElementById('gratuitydiv').style.display = 'none';
-
                 document.getElementById('salaryform').style.display = 'none';
-
             };
-
         </script>
 
 
