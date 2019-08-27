@@ -251,16 +251,16 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="salaryprint" style="font-size: 12px">
+            <div class="modal-body" id="salaryprint" >
                 <!-- Default form login -->
                 <form id="nolform" class=" border border-light p-5" action="" method="post">
 
-                    <p id="salarydate" align="right" class="h8 mb-4"></p>
+                    <p style="text-size:15px" id="salarydate" align="right" class="h8 mb-4"></p>
                     <br><br>
-                    <h3  align="center" ><u>SALARY CERTIFICATE</u></h3>
+                    <p  align="center" ><u>SALARY CERTIFICATE</u></p>
                     <div >
                         <p  >
-                            <label  id="s_toaddress" name="s_toaddress" class="printInput"  class="form-control"></label>
+                            <p  id="s_toaddress" name="s_toaddress"></p>
                         </p>
 
                         <div>

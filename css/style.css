@@ -17,6 +17,11 @@
     width: 100px;
 }
 
+.printInput{
+    font-size:12px;
+}
+
+
 .gratuity{display: none;}
 
 /*input {

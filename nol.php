@@ -322,16 +322,16 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="nol" style="font-size: 12px">
+            <div class="modal-body" id="nol" >
                 <!-- Default form login -->
                 <form id="nolform" class=" border border-light p-5" action="" method="post">
 
                     <p id="date" align="right" class="h8 mb-4"></p>
                     <br><br>
-                    <h3  align="center" ><u>No Objection Letter</u></h3>
+                    <p style="text-size:15px" align="center" ><u>No Objection Letter</u></p>
                     <div >
                         <div  align="left" >
-                            <label  id="toaddress" name="toaddress" class="printInput"  class="form-control"></label>
+                            <p  id="toaddress" name="toaddress"></p>
                         </div>
 
                         <div>
