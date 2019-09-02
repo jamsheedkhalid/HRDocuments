@@ -41,34 +41,46 @@ checkLoggedIn()
         <script src="js/jquery.min.js"></script>
         <script src="js/autoFill.js"></script>
     </head>
+    
+        
+    <style> .modal-dialog {
+    max-width: 100%;
+    margin: 20;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+}</style>
 
     <body>
 
         <div class="container" style="padding: 20px">
             <div class="row">
                 <?php if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 2){?>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckNol();" id="radionol" name="radios">
                         <label class="custom-control-label" for="radionol">NOL</label>
                     </div>
                 </div>
                 <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckSalary();" id="radiosalary" name="radios">
                         <label class="custom-control-label" for="radiosalary">Salary Certificate</label>
                     </div>
                 </div>
                 <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
-                <div class="col-sm-2" hidden>
+                <div class="col-sm-2" hidden >
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckGratuity();" id="radiogratuity" name="radios">
                         <label class="custom-control-label" for="radiogratuity">Gratuity Report</label>
                     </div>
                 </div>
                 <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
-                <div class="col-sm-2" hidden>
+                <div class="col-sm-2" >
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckFeeCertificate();" id="radiofee" name="radios">
                         <label class="custom-control-label" for="radiofee">Fee Certificate</label>
@@ -89,6 +101,7 @@ checkLoggedIn()
         <?php include 'nol.php'; ?>
         <?php include 'salary.php'; ?>
         <?php include 'gratuity.php'; ?>
+        <?php include 'feeCertificate.php'; ?>
         
 
 
@@ -101,7 +114,7 @@ checkLoggedIn()
                     document.getElementById('nolform').style.display = 'inline';
                     document.getElementById('salaryform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
-
+                    document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
 
@@ -121,7 +134,7 @@ checkLoggedIn()
                     document.getElementById('salaryform').style.display = 'inline';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
-
+                    document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
 
@@ -139,7 +152,7 @@ checkLoggedIn()
                     document.getElementById('gratuitydiv').style.display = 'inline';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
-
+                    document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
 
@@ -152,8 +165,8 @@ checkLoggedIn()
             }
             
                         function yesnoCheckFeeCertificate() {
-                if (document.getElementById('radiogratuity').checked) {
-
+                if (document.getElementById('radiofee').checked) {
+                    document.getElementById('feeCertificate').style.display = 'inline';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
@@ -172,7 +185,7 @@ checkLoggedIn()
             window.onload = function () {
                 document.getElementById('nolform').style.display = 'none';
                 document.getElementById('gratuitydiv').style.display = 'none';
-
+                document.getElementById('feeCertificate').style.display = 'none';
                 document.getElementById('salaryform').style.display = 'none';
 
             };
