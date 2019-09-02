@@ -10,7 +10,7 @@ $sql = "SELECT DISTINCT first_name , batch_id "
         . " FROM students WHERE familyid  = '$search' "
         . "ORDER BY first_name ASC ";
 //echo $sql;
-$ExecQuery = MySQLi_query($conn, $sql);
+$ExecQuery = MySQLi_query($conn, $sql); 
 if ($ExecQuery->num_rows > 0) {
     $si = 0;
     echo " <thead style='text-align:right' ><tr >
@@ -18,10 +18,10 @@ if ($ExecQuery->num_rows > 0) {
                                             <th scope=col>المتبقي</th>
                                             <th scope=col>المدفوع</th>
                                             <th scope=col>الاجمالي </th>
-                                            <th scope=col>رسوم المواصلات </th>
-                                            <th scope=col >رسوم الزي المدرسي</th>
-                                            <th scope=col>رسوم الكتب</th>
                                             <th scope=col>رسوم الدراسة</th>
+                                            <th scope=col >رسوم الكتب</th>
+                                            <th scope=col>رسوم المواصلات</th>
+                                            <th scope=col>رسوم الزي المدرسي</th>
                                             <th scope=col>الصف</th>
                                             <th scope=col>المنهج</th>
                                             <th scope=col>الاسم</th>
@@ -52,8 +52,8 @@ if ($ExecQuery->num_rows > 0) {
         . "<td class='tdstyle arabictd' ><label contentEditable class=form-control ></label></td>"
         . "<td ><select onchange='applyfeesAr(this.options[this.selectedIndex].value);' class='form-control btn-select arabictd' >"
         . "<option disabled selected>" . $course . "</option>"
-        . "<option value='KG1'>كجم ١</option>"
-        . "<option value='KG2'>كجم ٢</option>";
+        . "<option value='KG1'>روضة  ١</option>"
+        . "<option value='KG2'>روضة  ٢</option>";
         for ($gr = 1; $gr < 13; $gr++) {
             $grade = engtoarabic1($gr);
             echo"<option value='GR".$gr."'>الصف " . $grade . "</option>";

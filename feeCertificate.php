@@ -446,8 +446,8 @@ function applyfeesAr(str) {
       <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
           <td><select id='grselect' onchange='applyfeesAr(this.options[this.selectedIndex].value); ' class='form-control btn-select'>\n\
       <option selected disabled>اختر الصف</option>\n\
-      <option value='KG1'>كجم ١</option>\n\
-      <option value='KG2'>كجم ٢ </option>\n\
+      <option value='KG1'>روضة  ١</option>\n\
+      <option value='KG2'>روضة  ٢ </option>\n\
       <option value='GR1'> الصف١ </option>\n\
       <option value='GR2'>الصف٢ </option>\n\
        <option value='GR3'>الصف٣ </option>\n\
