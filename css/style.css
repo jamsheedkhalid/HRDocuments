@@ -8,6 +8,11 @@
     text-transform: capitalize;
 
 }
+.rectangle {
+  height: 50px;
+  width: 100px;
+  background-color: #555;
+}
 
 .today{
     color:red;
@@ -21,7 +26,13 @@
     font-size:12px;
 }
 
+.arabictd{
+    text-align: right;
+}
 
+.tdstyle{
+    word-wrap: break-word;min-width: 80px;max-width: 100px;
+}
 .gratuity{display: none;}
 
 /*input {
@@ -31,4 +42,9 @@
     transition: width 0.25s;
 
 }*/
+
+
+
+
+
 

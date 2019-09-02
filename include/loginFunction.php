@@ -3,6 +3,7 @@
 function login() {
 
     require 'config/dbConfig.php';
+    
 
     $sql = "select users.id user,users.first_name name from users where users.username = '$_POST[user]';";
     $result = $conn->query($sql);
@@ -22,7 +23,7 @@ function login() {
             WHERE
             A.privilege_id = 35 AND B.privilege_id = 25 AND A.user_id='$user'";
 
-        echo $sql;
+//        echo $sql;
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $_SESSION['login'] = 1;

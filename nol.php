@@ -233,7 +233,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                             <div class="input-group-prepend">
                                 <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Salary </span>
                             </div>
-                            <input  type="text"  id="printsalary"  onmousemove="words()" name="printsalary" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $salary ?>" >
+                            <input  type="text"  id="printsalary"  onmousemove="words()" onkeyup="words()" name="printsalary" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $salary ?>" >
                             <div class="invalid-feedback">
                                 Please Enter Salary.
                             </div>                        
