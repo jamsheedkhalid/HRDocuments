@@ -22,7 +22,7 @@ $(document).ready(function() {
                //AJAX type is "Post".
                type: "POST",
                //Data will be sent to "ajax.php".
-               url: "../hrdocs/db/employeeSearch.php",
+               url: "../db/employeeSearch.php",
                //Data, that will be sent to "ajax.php".
                data: {
                    //Assigning value of "name" into "employeeName" variable.
