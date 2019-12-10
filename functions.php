@@ -42,14 +42,33 @@ function school($conn) {
 
 function passportnumber($employeeid, $conn) {
     $sql = "SELECT additional_info from employee_additional_details "
-            . "WHERE employee_id = '$employeeid' AND additional_field_id = 8";
+            . "WHERE employee_id = '$employeeid' AND additional_field_id = 18";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            if( $row['additional_info'] == '0' ||  $row['additional_info'] == '')
+            {
+                $sql = "SELECT additional_info from employee_additional_details "
+                    . "WHERE employee_id = '$employeeid' AND additional_field_id = 13";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row1 = $result->fetch_assoc()) {
+                        if( $row1['additional_info'] == '0' ||  $row1['additional_info'] == '')
+                        {
+                            $passport = '-';
+                        }
+                        else
+                            $passport = $row1['additional_info'];
+                    }
+                }
+            }
+            else
             $passport = $row['additional_info'];
         }
     } else
         $passport = '';
+    echo $sql;
+
     return $passport;
 }
 
