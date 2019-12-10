@@ -67,7 +67,6 @@ function passportnumber($employeeid, $conn) {
         }
     } else
         $passport = '';
-    echo $sql;
 
     return $passport;
 }
