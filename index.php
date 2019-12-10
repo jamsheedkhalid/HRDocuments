@@ -122,10 +122,10 @@ if (isset($_SESSION['login']))
 <body>
 
     <!--API Connecting with demo--> 
-    <input  id="instanceurl" type="hidden" name="instanceurl" value="http://demo.indepth.ae"/>
-    <input  id="client_id" type="hidden" value="00f4e2946c95694ac4c4cb86d44a4b48ab7281f94faf95ec2c6d181d50db801d"/>
-    <input  id="client_secret" type="hidden" value="819793f943fbc9a2320cd87a824e5ad29e51bb0ae77699ed91956a8f995e7719"/>
-    <input  id="redirect_uri" type="hidden" value="http://reports.demo.indepth.ae"/>
+    <input  id="instanceurl" type="hidden" name="instanceurl" value="https://alsanawbar.school"/>
+    <input  id="client_id" type="hidden" value="ec12b9754faf919e55db12d11a506bc2872c2ba5a6381e2ab1bee91d376a28ec"/>
+    <input  id="client_secret" type="hidden" value="6a45e4a8054c2290fd10ab486349dd08a9c56294be8c13a705171d65d89e0806"/>
+    <input  id="redirect_uri" type="hidden" value="https://wps.alsanawbar.school"/>
 
 
 

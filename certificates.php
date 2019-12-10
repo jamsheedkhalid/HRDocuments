@@ -65,7 +65,7 @@ checkLoggedIn()
                         <label class="custom-control-label" for="radionol">NOL</label>
                     </div>
                 </div>
-                <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
+                <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 2){?>
                 <div class="col-sm-3">
                     <div class="custom-control custom-radio">
                         <input type="radio" class="custom-control-input" onclick="yesnoCheckSalary();" id="radiosalary" name="radios">

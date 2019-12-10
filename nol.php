@@ -68,7 +68,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Employee</span>
                     </div>
-                    <input type="text" list="display" id="name" name="name" required  class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                    <input type="text" list="display" id="name" name="name" required  class="form-control autoCamelCase" placeholder="Enter First Name or User ID" aria-label="name" aria-describedby="basic-addon1">
                     <datalist  id="display"></datalist >
                     <div class="valid-feedback">
                         Employee Details Fetched.
@@ -83,7 +83,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="font-size: 12px;">Objective</span>
                     </div>
-                    <textarea type="text" id="inputobjective" required name="inputobjective"class="form-control autoCamelCase" aria-label="With textarea"></textarea>
+                    <textarea type="text" id="inputobjective" required name="inputobjective"class="form-control autoCamelCase" aria-label="With textarea" placeholder="Eg: Driving Liscence"></textarea>
                     <div class="invalid-feedback">
                         Please Enter Objective.
                     </div>
@@ -97,7 +97,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="font-size: 12px;">School Declaration</span>
                     </div>
-                    <textarea required type="text" id="inputdeclaration"  name="inputdeclaration" class="form-control autoCamelCase" aria-label="With textarea"></textarea>
+                    <textarea required type="text" id="inputdeclaration"  name="inputdeclaration" class="form-control autoCamelCase" aria-label="With textarea" placeholder="Eg: Driving Liscence Application"></textarea>
                     <div class="invalid-feedback">
                         Please Enter No Objection Declaration.
                     </div>
@@ -194,11 +194,11 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
             <!-- passport Number -->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Passport</span>
+                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Passport/EID</span>
                 </div>
                 <input  type="text" id="printpassport" name="printpassport" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $passport ?>" >
                 <div class="invalid-feedback">
-                    Please Enter Passport Number.
+                    Please Enter Passport/EID Number.
                 </div>
             </div>
 
@@ -328,10 +328,12 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
                     <p id="date" align="right" class="h8 mb-4"></p>
                     <br><br>
-                    <p style="text-size:15px" align="center" ><u>No Objection Letter</u></p>
+                    <p style="text-size:15px" align="center" ><u><b>No Objection Letter</b></u></p>
+                    <br><br>
                     <div >
                         <div  align="left" >
                             <p  id="toaddress" name="toaddress"></p>
+                            <br><br>
                         </div>
 
                         <div>
@@ -350,7 +352,12 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                                 <label id="nationality"></label> , Passport Number 
                                 <label id="passportnumber"></label> is working full time at 
                                 <label id="schoolname"></label> as an 
-                                <label id="jobtitle"></label>. He has been employed since 
+                                <label id="jobtitle"></label>. <?php
+                                if ($gender == 'f')
+                                    echo 'She';
+                                else
+                                    echo 'He';
+                                ?>  has been employed since 
                                 <label id="joiningdate"></label>  
                                 <label id="salarywords"></label>
                                 <label  id="salary"></label>
@@ -371,14 +378,14 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                             <p>
                                 Please feel free to contact us if you require any further information.
                             </p>
-                            <br><br>
+                            <br>
                         </div>
                         <div align="left"> 
 
-                            <p>Sincerely,</p>
-                            <p>Ms Rima Sarieddine</p>
-                            <p>Director</p>
-                            <p>Al Sanawbar School</p>
+                            <p>Sincerely,<br>
+                            Ms Rima Sarieddine<br>
+                            Director<br>
+                            Al Sanawbar School</p>
                         </div>
                     </div>
                 </form>
@@ -426,7 +433,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 <script>
     $('#issuenol').click(function () {
         var to = document.getElementById('printfwdto').value;
-        document.getElementById('toaddress').textContent = to;
+        document.getElementById('toaddress').textContent = 'To: ' + to;
 
 
         var schoolname = document.getElementById('printschool').value;
@@ -453,6 +460,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
         var salarywords = document.getElementById('printsalarywords').value;
         document.getElementById('salarywords').textContent = 'with a total monthly salary of ' + salarywords;
+        var del1=10;
 
 
         var firstname = document.getElementById('printfirstname').value;
@@ -463,6 +471,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
 
         var declaration = document.getElementById('printdeclaration').value;
         document.getElementById('schooldeclaration').textContent = declaration;
+        var del = 10;
 
 
     });

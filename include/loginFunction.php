@@ -29,38 +29,51 @@ function login() {
             $_SESSION['login'] = 1;
             $_SESSION['HR_FIN'] = 1;
             header('Location: certificates.php');
-        } else {
-            $sql = "SELECT
+        }
+        else { $sql = "SELECT
+            *
+            FROM users WHERE id='$user' AND username = 'admin' ";
+
+//        echo $sql;
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $_SESSION['login'] = 1;
+                $_SESSION['HR_FIN'] = 1;
+                header('Location: certificates.php');
+            }
+            else {
+                $sql = "SELECT
             *
             FROM
             privileges_users 
             WHERE
             privilege_id = 35 AND user_id='$user'";
 
-            echo $sql;
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                $_SESSION['login'] = 1;
-                $_SESSION['HR_FIN'] = 2;
-                header('Location: certificates.php');
-            } else {
+                echo $sql;
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $_SESSION['login'] = 1;
+                    $_SESSION['HR_FIN'] = 2;
+                    header('Location: certificates.php');
+                } else {
 
-                $sql = "SELECT
+                    $sql = "SELECT
             *
             FROM
             privileges_users 
             WHERE
             privilege_id = 25 AND user_id='$user'";
 
-                echo $sql;
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $_SESSION['login'] = 1;
-                    $_SESSION['HR_FIN'] = 3;
-                    header('Location: certificates.php');
-                } else {
-                    $_SESSION['noaccess'] = 1;
-                    header('Location: index.php');
+                    echo $sql;
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        $_SESSION['login'] = 1;
+                        $_SESSION['HR_FIN'] = 3;
+                        header('Location: certificates.php');
+                    } else {
+                        $_SESSION['noaccess'] = 1;
+                        header('Location: index.php');
+                    }
                 }
             }
         }

@@ -52,7 +52,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Forwading To</span>
                 </div>
-                <input  type="text" id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                <input  type="text" id="fwdto" name="fwdto" required class="form-control autoCamelCase" placeholder="To Address" aria-label="name" aria-describedby="basic-addon1">
                 <div class="invalid-feedback">
                     Please Enter Address.
                 </div>
@@ -68,7 +68,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Employee</span>
                 </div>
-                <input type="text" list="salarydisplay" id="salaryname" name="salaryname" required  class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                <input type="text" list="salarydisplay" id="salaryname" name="salaryname" placeholder="First Name or User ID" required  class="form-control autoCamelCase"  aria-label="name" aria-describedby="basic-addon1">
                 <datalist  id="salarydisplay"></datalist >
                 <div class="valid-feedback">
                     Employee Details Fetched.
@@ -166,11 +166,11 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
             <!-- passport Number -->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Passport</span>
+                    <span class="input-group-text" style="font-size: 12px"id="basic-addon1">Passport/EID</span>
                 </div>
                 <input  type="text" id="s_printpassport" name="s_printpassport" required class="form-control autoCamelCase" placeholder="" aria-label="name" aria-describedby="basic-addon1" value="<?php echo $passport ?>" >
                 <div class="invalid-feedback">
-                    Please Enter Passport Number.
+                    Please Enter Passport/EID Number.
                 </div>
             </div>
 
@@ -254,18 +254,18 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
             <div class="modal-body" id="salaryprint" >
                 <!-- Default form login -->
                 <form id="nolform" class=" border border-light p-5" action="" method="post">
-
+                    <br>
                     <p style="text-size:15px" id="salarydate" align="right" class="h8 mb-4"></p>
+                    <br>
+                    <p  align="center" ><u><b>SALARY CERTIFICATE</b></u></p>
                     <br><br>
-                    <p  align="center" ><u>SALARY CERTIFICATE</u></p>
                     <div >
                         <p  >
                             <p  id="s_toaddress" name="s_toaddress"></p>
                         </p>
-
+                        <br>
                         <div>
-                            <p  >
-                                To Whom It May Concern </p>
+                            
 
                             <p>
                                 This is to confirm that <?php
@@ -275,10 +275,15 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
         echo 'Mr.';
     ?>
                                 <label id='s_pname'></label>, holder of Nationality 
-                                <label id="s_nationality"></label> , Passport Number 
+                                <label id="s_nationality"></label> , Passport/EID Number 
                                 <label id="s_passportnumber"></label> is working full time at 
                                 <label id="s_schoolname"></label> as an 
-                                <label id="s_jobtitle"></label>. He has been employed since 
+                                <label id="s_jobtitle"></label>.<?php
+                                if ($gender == 'f')
+                                    echo 'She';
+                                else
+                                    echo 'He.';
+    ?> has been employed since 
                                 <label id="s_joiningdate"></label>  
                                 <label id="s_salarywords"></label>
                                 <label  id="s_salary"></label>
@@ -296,14 +301,14 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                             <p>
                                 Please feel free to contact us if you require any further information.
                             </p>
-                            <br><br>
+                            <br>
                         </div>
                         <div align="left"> 
 
-                            <p>Sincerely,</p>
-                            <p>Ms Rima Sarieddine</p>
-                            <p>Director</p>
-                            <p>Al Sanawbar School</p>
+                            <p>Sincerely,<br>
+                            Ms Rima Sarieddine<br>
+                            Director<br>
+                            Al Sanawbar School
                         </div>
                     </div>
                 </form>
@@ -327,7 +332,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
 <script>
     $('#issuecertificate').click(function () {
         var to = document.getElementById('s_printfwdto').value;
-        document.getElementById('s_toaddress').textContent = 'ADDRESSED TO: ' + to;
+        document.getElementById('s_toaddress').textContent = 'TO: ' + to;
 
 
         var schoolname = document.getElementById('s_printschool').value;
