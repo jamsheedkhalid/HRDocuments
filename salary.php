@@ -220,20 +220,20 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                 </div>  
             </div>
 
-            <label style="float: left"> Authorizer:</label>
+            <label style="float: left"> authorizer:</label>
 
-            <!-- authorize option-->
+            <!-- authorise option-->
             <div  class="input-group mb-3">
                 <!-- Default unchecked -->
                 <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="authorizeRadio1" name="authorizeRadio">
-                    <label class="custom-control-label" for="authorizeRadio1">Ms. Reema Sarieddine</label>
+                    <input type="radio" class="custom-control-input" id="authoriseRadio1" name="authoriseRadio">
+                    <label class="custom-control-label" for="authoriseRadio1">Ms. Reema Sarieddine</label>
                 </div>
 
                 <!-- Default checked -->
                 <div  class="custom-control custom-radio" style="margin-left: 20px">
-                    <input type="radio" class="custom-control-input" id="authorizeRadio2" name="authorizeRadio" checked>
-                    <label class="custom-control-label" for="authorizeRadio2">Mr. Omar Sarieddine</label>
+                    <input type="radio" class="custom-control-input" id="authoriseRadio2" name="authoriseRadio" checked>
+                    <label class="custom-control-label" for="authoriseRadio2">Mr. Omar Sarieddine</label>
                 </div>
             </div>
 
@@ -322,7 +322,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                         </div>
                         <div align="left"> 
 
-                            <p id="authorizeDiv" >
+                            <p id="authoriseDiv" >
                            </p>
                         </div>
                     </div>
@@ -347,14 +347,14 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
 <script>
     $('#issuecertificate').click(function () {
 
-        if(document.getElementById('authorizeRadio1').checked){
-            document.getElementById('authorizeDiv').innerHTML = ' Sincerely,<br>\n' +
+        if(document.getElementById('authoriseRadio1').checked){
+            document.getElementById('authoriseDiv').innerHTML = ' Sincerely,<br>\n' +
                 '                             Rima Sarieddine<br>\n' +
                 '                            Director<br>\n' +
                 '                                Al Sanawbar School ';
         }
-        else   if(document.getElementById('authorizeRadio2').checked){
-                document.getElementById('authorizeDiv').innerHTML = ' Sincerely,<br>\n' +
+        else   if(document.getElementById('authoriseRadio2').checked){
+                document.getElementById('authoriseDiv').innerHTML = ' Sincerely,<br>\n' +
                     '                            Omar Sarrieddine<br>\n' +
                     '                            Administrative Director<br>\n' +
                     '                                Al Sanawbar School'
