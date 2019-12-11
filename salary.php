@@ -220,6 +220,23 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                 </div>  
             </div>
 
+            <label style="float: left"> Authorizer:</label>
+
+            <!-- authorize option-->
+            <div  class="input-group mb-3">
+                <!-- Default unchecked -->
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="authorizeRadio1" name="authorizeRadio">
+                    <label class="custom-control-label" for="authorizeRadio1">Ms. Reema Sarieddine</label>
+                </div>
+
+                <!-- Default checked -->
+                <div  class="custom-control custom-radio" style="margin-left: 20px">
+                    <input type="radio" class="custom-control-input" id="authorizeRadio2" name="authorizeRadio" checked>
+                    <label class="custom-control-label" for="authorizeRadio2">Mr. Omar Sarieddine</label>
+                </div>
+            </div>
+
 
             <button type="button" class="btn btn-amber btn-sm" name="issuecertificate"  id="issuecertificate" data-toggle="modal" data-target="#salaryModalCenter">
                 ISSUE CERTIFICATE
@@ -305,10 +322,8 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                         </div>
                         <div align="left"> 
 
-                            <p>Sincerely,<br>
-                            Ms Rima Sarieddine<br>
-                            Director<br>
-                            Al Sanawbar School
+                            <p id="authorizeDiv" >
+                           </p>
                         </div>
                     </div>
                 </form>
@@ -331,6 +346,21 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
 
 <script>
     $('#issuecertificate').click(function () {
+
+        if(document.getElementById('authorizeRadio1').checked){
+            document.getElementById('authorizeDiv').innerHTML = ' Sincerely,<br>\n' +
+                '                             Rima Sarieddine<br>\n' +
+                '                            Director<br>\n' +
+                '                                Al Sanawbar School ';
+        }
+        else   if(document.getElementById('authorizeRadio2').checked){
+                document.getElementById('authorizeDiv').innerHTML = ' Sincerely,<br>\n' +
+                    '                            Omar Sarrieddine<br>\n' +
+                    '                            Administrative Director<br>\n' +
+                    '                                Al Sanawbar School'
+            }
+
+
         var to = document.getElementById('s_printfwdto').value;
         document.getElementById('s_toaddress').textContent = 'TO: ' + to;
 
