@@ -297,9 +297,9 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                                 <label id="s_schoolname"></label> as an 
                                 <label id="s_jobtitle"></label>.<?php
                                 if ($gender == 'f')
-                                    echo 'She';
+                                    echo ' She';
                                 else
-                                    echo 'He.';
+                                    echo ' He';
     ?> has been employed since 
                                 <label id="s_joiningdate"></label>  
                                 <label id="s_salarywords"></label>
@@ -312,7 +312,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                                     echo 'her';
                                 else
                                     echo 'his';
-    ?>  request without any responsibility on our part   
+    ?>  request without any responsibility on our part.   
                             </p>
 
                             <p>
