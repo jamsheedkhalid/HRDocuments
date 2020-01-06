@@ -272,7 +272,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                 <!-- Default form login -->
                 <form id="nolform" class=" border border-light p-5" action="" method="post">
                     <br>
-                    <p style="text-size:15px" id="salarydate" align="right" class="h8 mb-4"></p>
+                    <p style="text-size:15px; padding-right:30px" id="salarydate" align="right" class="h8 mb-4"></p>
                     <br>
                     <p  align="center" ><u><b>SALARY CERTIFICATE</b></u></p>
                     <br><br>
