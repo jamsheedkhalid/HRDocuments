@@ -311,7 +311,7 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                                 if ($gender == 'f')
                                     echo 'her';
                                 else
-                                    echo 'his.';
+                                    echo 'his';
     ?>  request without any responsibility on our part   
                             </p>
 
