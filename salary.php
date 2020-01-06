@@ -292,9 +292,9 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
         echo 'Mr.';
     ?>
                                 <label id='s_pname'></label>, holder of Nationality 
-                                <label id="s_nationality"></label> , Passport/EID Number 
+                                <label id="s_nationality"></label>, Passport/EID Number 
                                 <label id="s_passportnumber"></label> is working full time at 
-                                <label id="s_schoolname"></label> as an 
+                                <label id="s_schoolname"></label> as  
                                 <label id="s_jobtitle"></label>.<?php
                                 if ($gender == 'f')
                                     echo ' She';
