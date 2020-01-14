@@ -294,6 +294,11 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 <input type="radio" class="custom-control-input" id="authorizeRadio2" name="authorizeRadio" checked>
                 <label class="custom-control-label" for="authorizeRadio2">Mr. Omar Sarieddine</label>
             </div>
+
+	<div  class="custom-control custom-radio" style="margin-left: 20px">
+                <input type="radio" class="custom-control-input" id="authorizeRadio3" name="authorizeRadio" >
+                <label class="custom-control-label" for="authorizeRadio3">Mr. Talaat Sarieddine</label>
+            </div>
         </div>
 
             <div id="restoresalarybtn">
@@ -457,7 +462,12 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 '                            Administrative Director<br>\n' +
                 '                                Al Sanawbar School'
         }
-
+   else   if(document.getElementById('authorizeRadio2').checked){
+            document.getElementById('authorizeDiv').innerHTML = ' Sincerely,<br>\n' +
+                '                            Talaat Sarrieddine<br>\n' +
+                '                            Administrative Director<br>\n' +
+                '                                Al Sanawbar School'
+        }
 
 
 
