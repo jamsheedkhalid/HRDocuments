@@ -462,7 +462,7 @@ if (isset($_POST['nolsubmit']) && ($_POST['name'] !== '')) {
                 '                            Administrative Director<br>\n' +
                 '                                Al Sanawbar School'
         }
-   else   if(document.getElementById('authorizeRadio2').checked){
+   else   if(document.getElementById('authorizeRadio3').checked){
             document.getElementById('authorizeDiv').innerHTML = ' Sincerely,<br>\n' +
                 '                            Talaat Sarrieddine<br>\n' +
                 '                            Administrative Director<br>\n' +
