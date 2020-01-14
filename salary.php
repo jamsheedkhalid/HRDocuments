@@ -235,6 +235,11 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
                     <input type="radio" class="custom-control-input" id="authoriseRadio2" name="authoriseRadio" checked>
                     <label class="custom-control-label" for="authoriseRadio2">Mr. Omar Sarieddine</label>
                 </div>
+  
+                <div  class="custom-control custom-radio" style="margin-left: 20px">
+                    <input type="radio" class="custom-control-input" id="authoriseRadio3" name="authoriseRadio">
+                    <label class="custom-control-label" for="authoriseRadio3">Mr. Talaat Sarieddine</label>
+                </div>
             </div>
 
 
@@ -356,6 +361,12 @@ if (isset($_POST['salarysubmit']) && ($_POST['salaryname'] !== '')) {
         else   if(document.getElementById('authoriseRadio2').checked){
                 document.getElementById('authoriseDiv').innerHTML = ' Sincerely,<br>\n' +
                     '                            Omar Sarrieddine<br>\n' +
+                    '                            Administrative Director<br>\n' +
+                    '                                Al Sanawbar School'
+            }
+        else   if(document.getElementById('authoriseRadio3').checked){
+                document.getElementById('authoriseDiv').innerHTML = ' Sincerely,<br>\n' +
+                    '                            Talaat Sarrieddine<br>\n' +
                     '                            Administrative Director<br>\n' +
                     '                                Al Sanawbar School'
             }
