@@ -130,7 +130,7 @@ function ArabicDate() {
                     <p  align="center" style="font-size: 18px"  ><u>شهادة لمن يهمه الامر بالرسوم الدراسية</u></p>
 
                     <p  align="right" style="font-size:18px" >تشهد إدارة مدرسة الصنوبر  الخاصة 
-                        بان الطالب المذكور ادناه مسجل في المدرسة للعام الدراسي (2018 / 2019) وفق الرسوم المستحقة التالية: </p>
+                        بان الطالب المذكور ادناه مسجل في المدرسة للعام الدراسي (2019 / 2020) وفق الرسوم المستحقة التالية: </p>
 
                     <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd'> 
                     </table><button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button>
