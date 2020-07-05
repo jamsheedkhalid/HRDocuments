@@ -32,7 +32,7 @@ function login() {
         }
         else { $sql = "SELECT
             *
-            FROM users WHERE id='$user' AND ( username = 'James' OR username = 'admin' OR username = 'Hesham') ";
+            FROM users WHERE id='$user' AND ( username = 'James' OR username = 'admin' OR username = 'Hesham' OR username = 'Sarah') ";
 
 //        echo $sql;
             $result = $conn->query($sql);
