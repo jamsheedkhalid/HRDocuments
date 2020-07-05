@@ -12,6 +12,7 @@
 
 }
 
+
 table {
   border-collapse: collapse;
  
@@ -25,6 +26,23 @@ th, td {
   padding: 15px;
   text-align: left;
 }
+
+#feeTableAr th {border: 1px solid black !important;}
+
+.bank-table td, table, th{
+  border: none!important;
+
+}
+
+.bank-table {
+  margin-top:-40px !important;
+
+}
+
+.tdstyle {
+  text-align:right;
+}
+
 input, select {
     max-width: 100px;
     border: none;

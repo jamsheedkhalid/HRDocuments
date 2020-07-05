@@ -13,10 +13,7 @@ $sql = "SELECT DISTINCT first_name , batch_id "
 $ExecQuery = MySQLi_query($conn, $sql); 
 if ($ExecQuery->num_rows > 0) {
     $si = 0;
-    echo " <thead style='text-align:right' ><tr >
-                                           
-                                            <th scope=col>المتبقي</th>
-                                            <th scope=col>المدفوع</th>
+    echo " <thead style='text-align:right' ><tr>                                           
                                             <th scope=col>الاجمالي </th>
                                             <th scope=col>رسوم الدراسة</th>
                                             <th scope=col >رسوم الكتب</th>
@@ -43,14 +40,12 @@ if ($ExecQuery->num_rows > 0) {
 
 
         echo"<tr style='text-align:right'>"
-        . "<td class='tdstyle arabictd' ><label contentEditable class=form-control></label></td>"
         . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
-        . "<td class='tdstyle arabictd' ><label contentEditable class=form-control ></label></td>"
-        . "<td class='tdstyle arabictd' ><label contentEditable class=form-control ></label></td>"
-        . "<td class='tdstyle arabictd' ><label contentEditable class=form-control ></label></td>"
-        . "<td class='tdstyle arabictd' ><label contentEditable class=form-control></label></td>"
-        . "<td class='tdstyle arabictd' ><label contentEditable class=form-control ></label></td>"
-        . "<td ><select onchange='applyfeesAr(this.options[this.selectedIndex].value);' class='form-control btn-select arabictd' >"
+        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
+        . "<td><select onchange='applyfeesAr(this.options[this.selectedIndex].value);' class='form-control btn-select arabictd' >"
         . "<option disabled selected>" . $course . "</option>"
         . "<option value='KG1'>روضة  ١</option>"
         . "<option value='KG2'>روضة  ٢</option>";

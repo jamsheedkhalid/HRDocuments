@@ -29,16 +29,21 @@ function ArabicDate() {
 
         </div>
         <div class="col-10">
-
-            <div class="col-6">
+            <div class="col-10">
                 <div class="form-group ">
                     <label for="searchStudent">Search Student | بحث الطالب </label>
                     <input  type="text" class="form-control" id="searchStudent" onkeyup="showStudents(this.value)" aria-describedby="searchHelp" placeholder="Search Students">
                     <small id="searchHelp" class="form-text text-muted"><b>Enter family ID, student ID, student name |أدخل رقم العائلة  ، رقم الطالب ، اسم الطالب </b></small>
                 </div>              
             </div>
-            <div class="col">
-
+            <div class="input-group mb-3 col-10">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="font-size: 18px; font-weight: bold;" id="basic-addon1">Forwading To</span>
+                </div>
+                <input  type="text" id="dest_input" name="dest_input" required class="form-control autoCamelCase" placeholder="شهادة لمن يهمه الأمر بالرسوم الدراسية" aria-label="name" aria-describedby="basic-addon1" style="text-align:center;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="font-size: 18px; font-weight: bold;" id="basic-addon1">الجهة المُخاطبة</span>
+                </div>
             </div>
         </div>
     </div>
@@ -116,7 +121,6 @@ function ArabicDate() {
 
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
 
-
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 align='right' class="modal-title" id="exampleModalLongTitleArabic">شهادة الرسوم</h5>
@@ -124,16 +128,29 @@ function ArabicDate() {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body" id="feeCertificatePrintArabic" style="padding: 20px;">
-                    <div align='right'>  <div id="feedatear" style="font-size: 14px"  class="h8 mb-4"></div><?php echo ArabicDate();?></div> 
+                    <div class='row'>
+                        <div class='col-3'>
+                            <div id="feedatear" style="font-size: 14px" class="h8 mb-4"></div>
+                            <?php echo ArabicDate();?>
+                        </div>
+
+                        <div class='col-9 bank-table' align="right" id="bank-table">
+                            <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
+                            <button id="IBNAdd" onclick="IBANAdd()" title="إضافة طالب جديد" class="btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف سطر</button>
+                        </div>
+                    </div>
+
                     <br><br>
-                    <p  align="center" style="font-size: 18px"  ><u>شهادة لمن يهمه الامر بالرسوم الدراسية</u></p>
+                    <p align="center" style="font-size: 18px"><u id="dest"></u></p>
 
                     <p  align="right" style="font-size:18px" >تشهد إدارة مدرسة الصنوبر  الخاصة 
                         بان الطالب المذكور ادناه مسجل في المدرسة للعام الدراسي (2019 / 2020) وفق الرسوم المستحقة التالية: </p>
 
-                    <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd'> 
-                    </table><button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button>
+                    <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"> </table>
+                    
+                    <button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button>
                     
 
                     <div align="center">
@@ -146,7 +163,7 @@ function ArabicDate() {
                         <li style="font-size:16px">	اي كشط او تغير في محتوى الشهادة يلغيها  &#10022</li>    
                     </ul>
 
-                    <p style="font-size: 14px; padding-top: 50px;" align="left"><i> مدير المدرسة </i></p>
+                    <p style="font-size: 14px; padding-top: 30px;" align="left"><i> مدير المدرسة </i></p>
                     <hr>
                     <div align='right'>
                         <p style="font-size: 14px; ">لللاستعمال الرسمي </p>
@@ -160,13 +177,14 @@ function ArabicDate() {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id=""
-                            onclick="printJS({printable: 'feeCertificatePrintArabic', type: 'html', ignoreElements: ['addstudentar', 'delstudentAr'], maxWidth: 500, css: 'css/print.css'})">PRINT</button>
+                            onclick="printJS({printable: 'feeCertificatePrintArabic', type: 'html', ignoreElements: ['IBNAdd','IBNDelete','addstudentar', 'delstudentAr'], maxWidth: 500, css: 'css/print.css'})">PRINT</button>
                 </div>
             </div>
         </div>
     </div>
     
 </div>
+
 
 
     <script>
@@ -178,10 +196,6 @@ function ArabicDate() {
     </script>
 
     <script>
-        
-        
-        
-        
         function showStudents(str) {
             var xhttp;
             if (str == "") {
@@ -215,6 +229,12 @@ function ArabicDate() {
     
         <script>
         function showFeeTableAr(str) {
+            if (document.getElementById('dest_input').value != '')
+                document.getElementById('dest').textContent = document.getElementById('dest_input').value;
+            else     
+            document.getElementById('dest').textContent = document.getElementById('dest_input').placeholder;
+            
+
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -435,6 +455,14 @@ function applyfeesAr(str) {
     }
 
 
+    function IBANAdd() {
+        var newRow = jQuery("<tr><td id='IBNDelete'><span onclick='IBANDelete(this)' title='حذف' style='cursor: pointer; color:red' class='close'>&#10008;</span></td><td class='tdstyle'><label contentEditable class='form-control'></label></td><td class='tdstyle'><label contentEditable class='form-control'></label></td></tr>");
+        jQuery('table.IBAN-table').append(newRow);
+    }
+    function IBANDelete(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("IBAN-table").deleteRow(i);
+    }
 
     function addstudentAr() {
         var newRow = jQuery("<tr style='text-align:right'><td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
@@ -472,8 +500,6 @@ function applyfeesAr(str) {
             var i = r.parentNode.parentNode.rowIndex;
             document.getElementById("feeTable").deleteRow(i);
         }
-
-
 
         function addstudent() {
             var newRow = jQuery("<tr><td><input id='studentName' name='studentName' placeholder='Enter Student Name' style='text-transform:capitalize' type='text'/></td><td>\n\

@@ -1,6 +1,3 @@
-
-
-
 <?php
 include('config/dbConfig.php');
 $search = $_GET['q'];
@@ -31,7 +28,7 @@ if ($ExecQuery->num_rows > 0) {
                  "<td>".$row['admission_no']."<br>". engtoarabic($row['admission_no'])."</td>".
                  "<td>".$row['familyid']."<br>". engtoarabic($row['familyid'])."</td>"
                  ."<td><button title='Print Students Fee Certificate' onclick='showFeeTable(this.value)' data-toggle='modal' value=". $row['familyid']." data-target='#feeModalCenter' class='btn btn-primary btn-sm'>View Certificate</button>"
-                 . "<button title='اطبع شهادة رسوم الطلاب' onclick='showFeeTableAr(this.value)' data-toggle='modal' value=". $row['familyid']." data-target='#feeModalCenterArabic' class='btn btn-warning btn-sm'>عرض الشهادة</button></td></tr>";
+                 ."<button title='اطبع شهادة رسوم الطلاب' onclick='showFeeTableAr(this.value)' data-toggle='modal' value=". $row['familyid']." data-target='#feeModalCenterArabic' class='btn btn-warning btn-sm'>عرض الشهادة</button></td></tr>";
      }
      
      echo "</table>";
