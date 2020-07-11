@@ -25,28 +25,29 @@ function ArabicDate() {
 
 <div class="container" id="feeCertificate" style="display: inline">
     <div class="row">
-        <div class="col">
-
+        <div class="col"></div>
+        <div class="col-10" style="font-size:20px;">
+            <div style="display:inline; float:left;font-weight:bold;"><label>Certificate Language:</label></div>
+            <div class="radio" style="display:inline;padding-left:10px;"><label><input type="radio" name="optradio" checked onclick="language_select('en')">English</label></div>
+            <div class="radio" style="display:inline;padding-left:10px;"><label><input type="radio" name="optradio" onclick="language_select('ar')">عربي</label></div>
         </div>
+    </div>
+    
+    <div class="row">
+        <div class="col"></div>
         <div class="col-10">
-            <div class="col-10">
-                <div class="form-group ">
-                    <label for="searchStudent">Search Student | بحث الطالب </label>
-                    <input  type="text" class="form-control" id="searchStudent" onkeyup="showStudents(this.value)" aria-describedby="searchHelp" placeholder="Search Students">
-                    <small id="searchHelp" class="form-text text-muted"><b>Enter family ID, student ID, student name |أدخل رقم العائلة  ، رقم الطالب ، اسم الطالب </b></small>
-                </div>              
-            </div>
+
+            <form class="form-inline active-pink-3 active-pink-4 mb-3">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input class="form-control form-control-sm ml-3 w-75" type="text" id="searchStudent" onkeyup="showStudents(this.value)" aria-describedby="searchHelp" placeholder="Search Students">
+            </form>
+
             <div class="input-group mb-3 col-10">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 18px; font-weight: bold;" id="basic-addon1">Forwading To</span>
-                </div>
-                <input  type="text" id="dest_input" name="dest_input" required class="form-control autoCamelCase" placeholder="شهادة لمن يهمه الأمر بالرسوم الدراسية" aria-label="name" aria-describedby="basic-addon1" style="text-align:center;">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" style="font-size: 18px; font-weight: bold;" id="basic-addon1">الجهة المُخاطبة</span>
-                </div>
+                <input type="text" id="dest_input" name="dest_input" required class="form-control autoCamelCase active-pink-4" placeholder="شهادة لمن يهمه الأمر بالرسوم الدراسية" aria-label="name" aria-describedby="basic-addon1" style="text-align:center; font-size:20px;">
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
 
@@ -62,7 +63,7 @@ function ArabicDate() {
 
 
     <!-- Modal -->
-    <div   class="modal fade " id="feeModalCenter" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle"
+    <div   class="modal fade" id="feeModalCenter" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle"
            aria-hidden="true">
 
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -116,8 +117,7 @@ function ArabicDate() {
     </div>
 
     <!-- Modal -->
-    <div   class="modal fade " id="feeModalCenterArabic" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle"
-           aria-hidden="true">
+    <div   class="modal fade" id="feeModalCenterArabic" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle" aria-hidden="true">
 
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
 
@@ -145,8 +145,9 @@ function ArabicDate() {
                     <br><br>
                     <p align="center" style="font-size: 18px"><u id="dest"></u></p>
 
-                    <p  align="right" style="font-size:18px" >تشهد إدارة مدرسة الصنوبر  الخاصة 
-                        بان الطالب المذكور ادناه مسجل في المدرسة للعام الدراسي (2019 / 2020) وفق الرسوم المستحقة التالية: </p>
+<p  align="right" style="font-size:18px" >تشهد إدارة مدرسة الصنوبر  الخاصة</p>
+<p align="right" style="font-size:18px">بان الطالب المذكور ادناه مسجل في المدرسة للعام الدراسي</o>
+<p> وفق الرسوم المستحقة التالية</p>
 
                     <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"> </table>
                     
@@ -185,7 +186,14 @@ function ArabicDate() {
     
 </div>
 
-
+<script>
+    function language_select(lang) {
+        if (lang == 'ar')
+            document.getElementById('dest_input').placeholder = 'شهادة لمن يهمه الأمر - الرسوم الدراسيَّة'
+        else     
+            document.getElementById('dest_input').placeholder = 'To Whom It May Concern Certificate - School Fees'
+    }
+</script>
 
     <script>
         var d = new Date();

@@ -82,7 +82,7 @@ checkLoggedIn()
                 <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
                 <div class="col-sm-2" >
                     <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" onclick="yesnoCheckFeeCertificate();" id="radiofee" name="radios">
+                        <input value=fees type="radio" class="custom-control-input" onclick="yesnoCheckFeeCertificate();" id="radiofee" name="radios">
                         <label class="custom-control-label" for="radiofee">Fee Certificate</label>
                     </div>
                 </div>
@@ -103,7 +103,14 @@ checkLoggedIn()
         <?php include 'gratuity.php'; ?>
         <?php include 'feeCertificate.php'; ?>
         
-
+<script>
+    $(function() {
+        var $radios = $('input:radio[name=radios]');
+        if($radios.is(':checked') === false) {
+            // $radios.filter('[value=fees]').prop('checked', true);
+    }   
+        });
+</script>
 
         <script type="text/javascript">
 
@@ -185,7 +192,7 @@ checkLoggedIn()
             window.onload = function () {
                 document.getElementById('nolform').style.display = 'none';
                 document.getElementById('gratuitydiv').style.display = 'none';
-                document.getElementById('feeCertificate').style.display = 'none';
+                document.getElementById('feeCertificate').style.display = 'inline';
                 document.getElementById('salaryform').style.display = 'none';
 
             };
