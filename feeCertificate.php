@@ -70,20 +70,28 @@ function ArabicDate() {
     <div   class="modal fade" id="feeModalCenter" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
+                
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Fee Certificate</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body" id="feeCertificatePrint" style="padding: 20px;">
-                    <p id="feedate" style="font-size: 14px" align="right" class="h8 mb-4"></p>
+                    
+                    <div class='col-9 bank-table' align="left" id="bank-table" style="display:inline; float:left; width:50%;">
+                        <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
+                        <button id="IBNAdd" onclick="IBANAddEn()" title="Add new field" class="btn btn-sm " style="color: green;  font-weight: 100px">ِAdd Field&#43;</button>
+                    </div>
+                
+                    <p id="feedate" style="font-size: 14px; display:inline; float:right;" class="h8 mb-4"></p>
                     <br><br>
                     <p  align="center" style="font-size: 18px"  ><u>To Whom It May Concern</u></p>
 
-                    <p  align="left" style="font-size:18px" > This is to certify that the student(s) 
-                        below is registered at <strong>AL Sanawbar School</strong> 
-                        for the academic year 2019-2020. </p>
+                    <p style="font-size:18px; display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year</p>
+                    <select id="academic_years_en" style="display: inline;width: 140px !important;float:left;margin-left:10px;"></select>
+                    <p style="font-size:18px; display:inline; float:left; padding-left:10px;" >as per the below fees</p>
 
                     <table id="feeTable" class='table table-bordered table-sm student-list'> 
                     </table><button onclick="addstudent()"id="addstudent" title="Add Student" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; Add Student</button>
@@ -230,6 +238,27 @@ function ArabicDate() {
 
     <script>
         function showFeeTable(str) {
+            let yearsArray = [];
+            httpyears = new XMLHttpRequest();
+            httpyears.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    let str = this.responseText;
+                    yearsArray = str.split("\t");
+                }
+            };
+            httpyears.open("GET", "db/initAcademicYears.php", false);
+            httpyears.send();
+
+            let select = document.getElementById('academic_years_en');
+            var length = select.options.length;
+            for (i = length-1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+
+            for (i = 0; i<yearsArray.length-1; i++ ) {
+                select.add(new Option(yearsArray[i]));
+            }
+
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -246,7 +275,6 @@ function ArabicDate() {
     $(function () {$('#academic_years').multiselect({includeSelectAllOption: true});});
 
     function showFeeTableAr(str) {
-
         let yearsArray = [];
         httpyears = new XMLHttpRequest();
         httpyears.onreadystatechange = function () {
@@ -494,6 +522,16 @@ function applyfeesAr(str) {
                                 </td>\n\
                                 <td class='tdstyle'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
                                 <td class='tdstyle'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
+                            </tr>");
+        jQuery('table.IBAN-table').append(newRow);
+    }
+    function IBANAddEn() {
+        var newRow = jQuery("<tr>\n\
+                                <td class='tdstyle'><label contentEditable class='form-control' font-weight:bold;'></label></td>\n\
+                                <td class='tdstyle'><label contentEditable class='form-control' font-weight:bold;'></label></td>\n\
+                                <td id='IBNDelete'>\n\
+                                    <span onclick='IBANDelete(this)' title='Delete' style='cursor: pointer; color:red;' class='close'>&#10008;</span>\n\
+                                </td>\n\
                             </tr>");
         jQuery('table.IBAN-table').append(newRow);
     }
