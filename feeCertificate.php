@@ -25,11 +25,14 @@ function ArabicDate() {
 
 <div class="container" id="feeCertificate" style="display: inline">
     <div class="row">
-        <div class="col"></div>
-        <div class="col-10" style="font-size:20px;">
+        <div class="col-2"></div>
+        <div class="col-6" style="font-size:20px;">
             <div style="display:inline; float:left;font-weight:bold;"><label>Certificate Language:</label></div>
-            <div class="radio" style="display:inline;padding-left:10px;"><label><input type="radio" name="optradio" checked onclick="language_select('en')">English</label></div>
+            <div class="radio" style="display:inline;padding-left:10px;"><label>English</label><input type="radio" name="optradio" checked onclick="language_select('en')"></div>
+        </div>
+        <div class="col-3" style="font-size:20px; padding-left:90px;">
             <div class="radio" style="display:inline;padding-left:10px;"><label><input type="radio" name="optradio" onclick="language_select('ar')">عربي</label></div>
+            <div style="display:inline;font-weight:bold;padding-left:10px;">:<label>لغة الشهادة</label></div>
         </div>
     </div>
     
@@ -40,10 +43,11 @@ function ArabicDate() {
             <form class="form-inline active-pink-3 active-pink-4 mb-3">
                 <i class="fas fa-search" aria-hidden="true"></i>
                 <input class="form-control form-control-sm ml-3 w-75" type="text" id="searchStudent" onkeyup="showStudents(this.value)" aria-describedby="searchHelp" placeholder="Search Students">
+                <i class="fas fa-search" aria-hidden="true" style="padding-left:10px;"></i>
             </form>
 
             <div class="input-group mb-3 col-10">
-                <input type="text" id="dest_input" name="dest_input" required class="form-control autoCamelCase active-pink-4" placeholder="شهادة لمن يهمه الأمر بالرسوم الدراسية" aria-label="name" aria-describedby="basic-addon1" style="text-align:center; font-size:20px;">
+                <input type="text" id="dest_input" name="dest_input" required class="form-control autoCamelCase active-pink-4" placeholder="To Whom It May Concern Certificate - School Fees" aria-label="name" aria-describedby="basic-addon1" style="text-align:center; font-size:20px;">
             </div>
         </div>
     </div>
@@ -124,6 +128,7 @@ function ArabicDate() {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 align='right' class="modal-title" id="exampleModalLongTitleArabic">شهادة الرسوم</h5>
+                    <div id='debug'></div>
                     <button align='left' type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -144,10 +149,10 @@ function ArabicDate() {
 
                     <br><br>
                     <p align="center" style="font-size: 18px"><u id="dest"></u></p>
+                    <p align="right" style="font-size:18px; display: inline;float: right;">تشهد إدارة مدرسة الصنوبر  الخاصة بأنَّ الطالب المذكور أدناه مسجل في المدرسة للعام الدراسي</p>
+                    <select id="academic_years" style="display: inline;width: 140px !important;float: right;margin-right: 10px;"></select>
 
-<p  align="right" style="font-size:18px" >تشهد إدارة مدرسة الصنوبر  الخاصة</p>
-<p align="right" style="font-size:18px">بان الطالب المذكور ادناه مسجل في المدرسة للعام الدراسي</o>
-<p> وفق الرسوم المستحقة التالية</p>
+                    <p align="right" style="font-size:18px;margin-right: 10px;display: inline;float: right;"> وفق الرسوم المستحقة التالية</p>
 
                     <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"> </table>
                     
@@ -188,10 +193,16 @@ function ArabicDate() {
 
 <script>
     function language_select(lang) {
-        if (lang == 'ar')
-            document.getElementById('dest_input').placeholder = 'شهادة لمن يهمه الأمر - الرسوم الدراسيَّة'
-        else     
-            document.getElementById('dest_input').placeholder = 'To Whom It May Concern Certificate - School Fees'
+        if (lang == 'ar') {
+            document.getElementById('dest_input').placeholder = 'شهادة لمن يهمه الأمر - الرسوم الدراسيَّة';
+            document.getElementById('searchStudent').placeholder = 'ابحث عن الطالب';
+            document.getElementById('searchStudent').dir = 'rtl';
+        }
+        else {
+            document.getElementById('dest_input').placeholder = 'To Whom It May Concern Certificate - School Fees';
+            document.getElementById('searchStudent').placeholder = 'Search Students';
+            document.getElementById('searchStudent').dir = 'ltr';
+        }
     }
 </script>
 
@@ -235,25 +246,53 @@ function ArabicDate() {
 
     </script>
     
-        <script>
-        function showFeeTableAr(str) {
-            if (document.getElementById('dest_input').value != '')
-                document.getElementById('dest').textContent = document.getElementById('dest_input').value;
-            else     
-            document.getElementById('dest').textContent = document.getElementById('dest_input').placeholder;
-            
+<script type="text/javascript">
+    $(function () {$('#academic_years').multiselect({includeSelectAllOption: true});});
 
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("feeTableAr").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "showFeeTableAr.php?q=" + str, true);
-            xhttp.send();
+    function showFeeTableAr(str) {
+
+        let yearsArray = [];
+        httpyears = new XMLHttpRequest();
+        httpyears.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                let str = this.responseText;
+                yearsArray = str.split("\t");
+            }
+        };
+        httpyears.open("GET", "db/initAcademicYears.php", false);
+        httpyears.send();
+
+        let select = document.getElementById('academic_years');
+        var length = select.options.length;
+        for (i = length-1; i >= 0; i--) {
+            select.options[i] = null;
         }
 
-    </script>
+        for (i = 0; i<yearsArray.length-1; i++ ) {
+            select.add(new Option(yearsArray[i]));
+        }
+
+
+
+        if (document.getElementById('dest_input').value != '')
+            document.getElementById('dest').textContent = document.getElementById('dest_input').value;
+        else     
+            document.getElementById('dest').textContent = document.getElementById('dest_input').placeholder;    
+
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("feeTableAr").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "showFeeTableAr.php?q=" + str, true);
+        xhttp.send();
+
+    
+        
+        // $(function () {$('#academic_years').multiselect({includeSelectAllOption: true});});
+    }
+</script>
 
  
     <script>
@@ -452,9 +491,6 @@ function applyfeesAr(str) {
 
 
     </script>
-
-
-
 
 <script>
     function deleteRowAr(r) {
