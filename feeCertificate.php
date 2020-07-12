@@ -28,10 +28,10 @@ function ArabicDate() {
         <div class="col-2"></div>
         <div class="col-6" style="font-size:20px;">
             <div style="display:inline; float:left;font-weight:bold;"><label>Certificate Language:</label></div>
-            <div class="radio" style="display:inline;padding-left:10px;"><label>English</label><input type="radio" name="optradio" checked onclick="language_select('en')"></div>
+            <div class="radio" style="display:inline;padding-left:10px;"><label>English</label><input type="radio" name="optradio" checked onclick="language_select('en')" style="margin-left:10px;"></div>
         </div>
         <div class="col-3" style="font-size:20px; padding-left:90px;">
-            <div class="radio" style="display:inline;padding-left:10px;"><label><input type="radio" name="optradio" onclick="language_select('ar')">عربي</label></div>
+            <div class="radio" style="display:inline;padding-left:10px;"><label><input type="radio" name="optradio" onclick="language_select('ar')" style="margin-right:10px;">عربي</label></div>
             <div style="display:inline;font-weight:bold;padding-left:10px;">:<label>لغة الشهادة</label></div>
         </div>
     </div>
@@ -67,12 +67,8 @@ function ArabicDate() {
 
 
     <!-- Modal -->
-    <div   class="modal fade" id="feeModalCenter" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle"
-           aria-hidden="true">
-
+    <div   class="modal fade" id="feeModalCenter" tabindex="-1" role="dialog" aria-labelledby="nolModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
-
-
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Fee Certificate</h5>
@@ -152,8 +148,8 @@ function ArabicDate() {
                     <p align="right" style="font-size:18px; display: inline;float: right;">تشهد إدارة مدرسة الصنوبر  الخاصة بأنَّ الطالب المذكور أدناه مسجل في المدرسة للعام الدراسي</p>
                     <select id="academic_years" style="display: inline;width: 140px !important;float: right;margin-right: 10px;"></select>
 
-                    <p align="right" style="font-size:18px;margin-right: 10px;display: inline;float: right;"> وفق الرسوم المستحقة التالية</p>
-
+                    <p id="statement" align="right" style="font-size:18px;margin-right: 10px;display: inline;float: right;"> وفق الرسوم المستحقة التالية</p>
+                    <br>
                     <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"> </table>
                     
                     <button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button>
@@ -287,15 +283,7 @@ function ArabicDate() {
         };
         xhttp.open("GET", "showFeeTableAr.php?q=" + str, true);
         xhttp.send();
-
-    
-        
-        // $(function () {$('#academic_years').multiselect({includeSelectAllOption: true});});
     }
-</script>
-
- 
-    <script>
         
         document.getElementById('feeTable').onkeyup = function (){           
             cal_total();
@@ -500,7 +488,13 @@ function applyfeesAr(str) {
 
 
     function IBANAdd() {
-        var newRow = jQuery("<tr><td id='IBNDelete'><span onclick='IBANDelete(this)' title='حذف' style='cursor: pointer; color:red' class='close'>&#10008;</span></td><td class='tdstyle'><label contentEditable class='form-control'></label></td><td class='tdstyle'><label contentEditable class='form-control'></label></td></tr>");
+        var newRow = jQuery("<tr>\n\
+                                <td id='IBNDelete'>\n\
+                                    <span onclick='IBANDelete(this)' title='حذف' style='cursor: pointer; color:red;' class='close'>&#10008;</span>\n\
+                                </td>\n\
+                                <td class='tdstyle'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
+                                <td class='tdstyle'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
+                            </tr>");
         jQuery('table.IBAN-table').append(newRow);
     }
     function IBANDelete(r) {

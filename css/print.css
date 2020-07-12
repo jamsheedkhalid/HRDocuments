@@ -75,5 +75,15 @@ select::-ms-expand {
 
 .student-listAr th  ,td{
   text-align: center;
-padding: 2px 5px 2px !important;
+  padding: 2px 5px 2px !important;
+}
+
+#academic_years {
+  display: inline;
+  margin-top: 21px;
+  padding-left: 30px;
+}
+
+#feeTableAr {
+  margin-top: 100px;
 }
