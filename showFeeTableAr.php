@@ -15,13 +15,13 @@ if ($ExecQuery->num_rows > 0) {
     $si = 0;
     echo " <thead style='text-align:right' ><tr>                                           
                                             <th scope=col>الاجمالي </th>
-                                            <th scope=col>رسوم الدراسة</th>
-                                            <th scope=col >رسوم الكتب</th>
-                                            <th scope=col>رسوم المواصلات</th>
-                                            <th scope=col>رسوم الزي المدرسي</th>
+                                            <th scope=col>الرسوم الدراسية</th>
+                                            <th scope=col >الكتب</th>
+                                            <th scope=col>المواصلات</th>
+                                            <th scope=col>الزي المدرسي</th>
                                             <th scope=col>الصف</th>
                                             <th scope=col>المنهج</th>
-                                            <th scope=col>الاسم</th>
+                                            <th scope=col class='name'>الأسم</th>
                                         </tr>
                                     </thead>";
     $j = 1;
@@ -40,12 +40,12 @@ if ($ExecQuery->num_rows > 0) {
 
 
         echo"<tr style='text-align:right'>"
-        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
-        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
-        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
-        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
-        . "<td class='tdstyle arabictd'><label contentEditable class=form-control></label></td>"
-        . "<td><select onchange='applyfeesAr(this.options[this.selectedIndex].value);' class='form-control btn-select arabictd' >"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
+        . "<td><select onchange='applyfeesAr(this.options[this.selectedIndex].value);' class='form-control btn-select ' >"
         . "<option disabled selected>" . $course . "</option>"
         . "<option value='KG1'>روضة  ١</option>"
         . "<option value='KG2'>روضة  ٢</option>";
@@ -54,8 +54,8 @@ if ($ExecQuery->num_rows > 0) {
             echo"<option value='GR".$gr."'>الصف " . $grade . "</option>";
         }
         echo "</select></td>"
-        . "<td><select class='form-control selectprint arabictd' ><option>أمريكي</option><option>وزارة التعليم</option></select></td>"
-        . "<td class='tdstyle arabictd'>" . $row['first_name'] . "</td>"
+        . "<td><select class='form-control selectprint ' ><option>أمريكي</option><option>وزارة التعليم</option></select></td>"
+        . "<td class='tdstyle name'>" . $row['first_name'] . "</td>"
         . "<td id='delstudentAr'><span  onclick='deleteRowAr(this)' title='Remove Student' style='cursor: pointer; color:red' class='close'>&#10008;</span></td>"
         . "</tr>";
         $j++;

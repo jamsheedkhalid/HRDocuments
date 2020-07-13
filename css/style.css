@@ -31,6 +31,9 @@
 }
 
 .tdstyle{
+    word-wrap: break-word;min-width: 80px;max-width: 100px;
+}
+.iBANTd{
     word-wrap: break-word;min-width: 300px;max-width: 320px;
 }
 .gratuity{display: none;}
@@ -50,3 +53,10 @@ input[type="radio"] {
     transform: scale(1.5);
 }
 
+.right {
+    float:right;
+}
+
+.left {
+    float:left;
+}

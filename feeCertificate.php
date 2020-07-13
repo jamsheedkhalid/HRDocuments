@@ -39,16 +39,15 @@ function ArabicDate() {
     <div class="row">
         <div class="col"></div>
         <div class="col-10">
-
             <form class="form-inline active-pink-3 active-pink-4 mb-3">
-                <i class="fas fa-search" aria-hidden="true"></i>
+                <i class="fas fa-search" aria-hidden="true" id="searchIconEn"></i>
                 <input class="form-control form-control-sm ml-3 w-75" type="text" id="searchStudent" onkeyup="showStudents(this.value)" aria-describedby="searchHelp" placeholder="Search Students">
-                <i class="fas fa-search" aria-hidden="true" style="padding-left:10px;"></i>
+                <i class="fas fa-search" aria-hidden="true" style="padding-left:10px;" id="searchIconAr"></i>
             </form>
 
-            <div class="input-group mb-3 col-10">
+            <!-- <div class="input-group mb-3 col-10">
                 <input type="text" id="dest_input" name="dest_input" required class="form-control autoCamelCase active-pink-4" placeholder="To Whom It May Concern Certificate - School Fees" aria-label="name" aria-describedby="basic-addon1" style="text-align:center; font-size:20px;">
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -57,8 +56,7 @@ function ArabicDate() {
 
         </div>
         <div class="col-10">
-            <div id='tableStudents' style="padding-top: 20px;">
-            </div>
+            <div id='tableStudents' style="padding-top: 20px;"></div>
         </div>  
         <div class="col">
         </div>
@@ -80,21 +78,22 @@ function ArabicDate() {
 
                 <div class="modal-body" id="feeCertificatePrint" style="padding: 20px;">
                     
-                    <div class='col-9 bank-table' align="left" id="bank-table" style="display:inline; float:left; width:50%;">
+                    <!-- <div class='col-9 bank-table' align="left" id="bank-table" style="display:inline; float:left; width:50%;">
                         <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
                         <button id="IBNAdd" onclick="IBANAddEn()" title="Add new field" class="btn btn-sm " style="color: green;  font-weight: 100px">ِAdd Field&#43;</button>
-                    </div>
+                    </div> -->
                 
-                    <p id="feedate" style="font-size: 14px; display:inline; float:right;" class="h8 mb-4"></p>
+                    <p id="feedate" style="font-size: 14px; display:inline; float:left;" class="h8 mb-4"></p>
                     <br><br>
                     <p  align="center" style="font-size: 18px"  ><u>To Whom It May Concern</u></p>
 
-                    <p style="font-size:18px; display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year</p>
+                    <p style="display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year</p>
                     <select id="academic_years_en" style="display: inline;width: 140px !important;float:left;margin-left:10px;"></select>
-                    <p style="font-size:18px; display:inline; float:left; padding-left:10px;" >as per the below fees</p>
+                    <p id='statementEn' style="font-size:18px; display:inline; float:left; padding-left:10px;" >as per the below fees</p>
 
-                    <table id="feeTable" class='table table-bordered table-sm student-list'> 
-                    </table><button onclick="addstudent()"id="addstudent" title="Add Student" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; Add Student</button>
+                    <table id="feeTable" class='table table-bordered table-sm student-list' border="1"></table>
+                    <!-- <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"></table> -->
+                    <button onclick="addstudent()"id="addstudent" title="Add Student" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; Add Student</button>
 
                     <div align="center">
                         <p style="font-size: 14px" align="left"><br><u><b>This Certificate has been issued upon the parent’s request.
@@ -131,24 +130,29 @@ function ArabicDate() {
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 align='right' class="modal-title" id="exampleModalLongTitleArabic">شهادة الرسوم</h5>
-                    <div id='debug'></div>
-                    <button align='left' type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class='left'>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class='right'>
+                        <h5 class="modal-title" id="exampleModalLongTitleArabic">شهادة الرسوم</h5>
+                    </div>
                 </div>
 
                 <div class="modal-body" id="feeCertificatePrintArabic" style="padding: 20px;">
                     <div class='row'>
+                        <div class='col-9'></div>
                         <div class='col-3'>
-                            <div id="feedatear" style="font-size: 14px" class="h8 mb-4"></div>
-                            <?php echo ArabicDate();?>
+                            <div id="feedatear" style="font-size: 14px" class='right'></div>
+                            <br>
+                            <div id="feedatear2" class='right'><?php echo ArabicDate();?></div>
                         </div>
 
-                        <div class='col-9 bank-table' align="right" id="bank-table">
+                        <!-- <div class='col-9 bank-table' align="right" id="bank-table">
                             <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
                             <button id="IBNAdd" onclick="IBANAdd()" title="إضافة طالب جديد" class="btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف سطر</button>
-                        </div>
+                        </div> -->
                     </div>
 
                     <br><br>
@@ -158,9 +162,9 @@ function ArabicDate() {
 
                     <p id="statement" align="right" style="font-size:18px;margin-right: 10px;display: inline;float: right;"> وفق الرسوم المستحقة التالية</p>
                     <br>
-                    <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"> </table>
+                    <table id="feeTableAr" class='table table-bordered table-sm' border="1"></table>
                     
-                    <button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button>
+                    <!-- <button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button> -->
                     
 
                     <div align="center">
@@ -187,7 +191,7 @@ function ArabicDate() {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id=""
-                            onclick="printJS({printable: 'feeCertificatePrintArabic', type: 'html', ignoreElements: ['IBNAdd','IBNDelete','addstudentar', 'delstudentAr'], maxWidth: 500, css: 'css/print.css'})">PRINT</button>
+                            onclick="printJS({printable: 'feeCertificatePrintArabic', type: 'html', ignoreElements: ['IBNDeleteEn','IBNAdd','IBNDelete','addstudentar', 'delstudentAr'], maxWidth: 500, css: 'css/print.css'})">PRINT</button>
                 </div>
             </div>
         </div>
@@ -198,14 +202,18 @@ function ArabicDate() {
 <script>
     function language_select(lang) {
         if (lang == 'ar') {
-            document.getElementById('dest_input').placeholder = 'شهادة لمن يهمه الأمر - الرسوم الدراسيَّة';
+            // document.getElementById('dest_input').placeholder = 'شهادة لمن يهمه الأمر - الرسوم الدراسيَّة';
             document.getElementById('searchStudent').placeholder = 'ابحث عن الطالب';
             document.getElementById('searchStudent').dir = 'rtl';
+            document.getElementById('searchIconEn').style.display = 'none';
+            document.getElementById('searchIconAr').style.display = 'block';
         }
         else {
-            document.getElementById('dest_input').placeholder = 'To Whom It May Concern Certificate - School Fees';
+            // document.getElementById('dest_input').placeholder = 'To Whom It May Concern Certificate - School Fees';
             document.getElementById('searchStudent').placeholder = 'Search Students';
             document.getElementById('searchStudent').dir = 'ltr';
+            document.getElementById('searchIconEn').style.display = 'block';
+            document.getElementById('searchIconAr').style.display = 'none';
         }
     }
 </script>
@@ -298,10 +306,10 @@ function ArabicDate() {
 
 
 
-        if (document.getElementById('dest_input').value != '')
-            document.getElementById('dest').textContent = document.getElementById('dest_input').value;
-        else     
-            document.getElementById('dest').textContent = document.getElementById('dest_input').placeholder;    
+        // if (document.getElementById('dest_input').value != '')
+        //     document.getElementById('dest').textContent = document.getElementById('dest_input').value;
+        // else     
+        //     document.getElementById('dest').textContent = document.getElementById('dest_input').placeholder;    
 
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -520,16 +528,16 @@ function applyfeesAr(str) {
                                 <td id='IBNDelete'>\n\
                                     <span onclick='IBANDelete(this)' title='حذف' style='cursor: pointer; color:red;' class='close'>&#10008;</span>\n\
                                 </td>\n\
-                                <td class='tdstyle'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
-                                <td class='tdstyle'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
+                                <td class='iBANTd'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
+                                <td class='iBANTd'><label contentEditable class='form-control' style='direction:rtl; font-weight:bold;'></label></td>\n\
                             </tr>");
         jQuery('table.IBAN-table').append(newRow);
     }
     function IBANAddEn() {
         var newRow = jQuery("<tr>\n\
-                                <td class='tdstyle'><label contentEditable class='form-control' font-weight:bold;'></label></td>\n\
-                                <td class='tdstyle'><label contentEditable class='form-control' font-weight:bold;'></label></td>\n\
-                                <td id='IBNDelete'>\n\
+                                <td class='iBANTd'><label contentEditable class='form-control' font-weight:bold;'></label></td>\n\
+                                <td class='iBANTd'><label contentEditable class='form-control' font-weight:bold;'></label></td>\n\
+                                <td id='IBNDeleteEn'>\n\
                                     <span onclick='IBANDelete(this)' title='Delete' style='cursor: pointer; color:red;' class='close'>&#10008;</span>\n\
                                 </td>\n\
                             </tr>");

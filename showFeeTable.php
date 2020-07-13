@@ -13,9 +13,9 @@ $sql = "SELECT DISTINCT CONCAT(last_name) name, batch_id "
 $ExecQuery = MySQLi_query($conn, $sql);
 if ($ExecQuery->num_rows > 0) {
     $si = 0;
-    echo " <thead><tr >
+    echo " <thead><tr>
                                             
-                                            <th scope=col>Name</th>
+                                            <th scope=col class='name'>Name</th>
                                             <th scope=col>Curriculum</th>
                                             <th scope=col>Grade</th>
                                             <th scope=col>Uniform</th>
@@ -43,7 +43,7 @@ if ($ExecQuery->num_rows > 0) {
 
 
         echo"<tr>"
-        . "<td>" . $row['name'] . "</td>"
+        . "<td class='name'>" . $row['name'] . "</td>"
         . "<td><select class='form-control selectprint' ><option>American</option><option>MOE</option></select></td>"
         . "<td style='font-size:8px'><select onchange='applyfees(this.options[this.selectedIndex].text);' class='form-control btn-select' ><option disabled selected>" . $course . "</option><option>KG1 </option>"
         . "<option>KG2 </option>";
