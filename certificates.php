@@ -61,7 +61,7 @@ checkLoggedIn()
                 <?php if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 2){?>
                 <div class="col-sm-2">
                     <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" onclick="yesnoCheckNol();" id="radionol" name="radios">
+                        <input type="radio" class="custom-control-input" onclick="yesnoCheckNol();" id="radionol" name="radios" checked>
                         <label class="custom-control-label" for="radionol">NOL</label>
                     </div>
                 </div>
@@ -190,9 +190,9 @@ checkLoggedIn()
             }
 
             window.onload = function () {
-                document.getElementById('nolform').style.display = 'none';
+                document.getElementById('nolform').style.display = 'inline';
                 document.getElementById('gratuitydiv').style.display = 'none';
-                document.getElementById('feeCertificate').style.display = 'inline';
+                document.getElementById('feeCertificate').style.display = 'none';
                 document.getElementById('salaryform').style.display = 'none';
 
             };

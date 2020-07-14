@@ -23,7 +23,7 @@ function ArabicDate() {
 
 ?>
 
-<div class="container" id="feeCertificate" style="display: inline">
+<div class="container" id="feeCertificate" style="display: none;">
     <div class="row">
         <div class="col-2"></div>
         <div class="col-6" style="font-size:20px;">
