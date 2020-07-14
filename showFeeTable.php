@@ -23,8 +23,6 @@ if ($ExecQuery->num_rows > 0) {
                                             <th scope=col>School  Books</th>
                                             <th scope=col>Tution Fees</th>
                                             <th scope=col>Total</th>
-                                            <th scope=col>Paid</th>
-                                            <th scope=col>Balance</th>
                                         </tr>
                                     </thead>";
     $i = 1;
@@ -54,8 +52,6 @@ if ($ExecQuery->num_rows > 0) {
         . "<td class=tdstyle><label contentEditable class=form-control></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
-        . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
-        . "<td class=tdstyle ><label contentEditable class=form-control></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control></label></td>"
         . "<td id='delstudent'><span  onclick='deleteRow(this)' title='Remove Student' style='cursor: pointer; color:red' class='close'>&#10008;</span></td>"

@@ -47,6 +47,12 @@
 }*/
 
 
+
+#academic_years_en_label{
+    display: none;
+}
+
+
 input[type="radio"] {
     -ms-transform: scale(1.5); /* IE 9 */
     -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
@@ -59,4 +65,16 @@ input[type="radio"] {
 
 .left {
     float:left;
+}
+
+.col3{
+    width: 33%!important;
+    display: inline-block;
+}
+#logo_img {
+    vertical-align: unset!important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
 }

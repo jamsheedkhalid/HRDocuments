@@ -77,19 +77,30 @@ function ArabicDate() {
                 </div>
 
                 <div class="modal-body" id="feeCertificatePrint" style="padding: 20px;">
-                    
                     <!-- <div class='col-9 bank-table' align="left" id="bank-table" style="display:inline; float:left; width:50%;">
                         <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
                         <button id="IBNAdd" onclick="IBANAddEn()" title="Add new field" class="btn btn-sm " style="color: green;  font-weight: 100px">ِAdd Field&#43;</button>
                     </div> -->
-                
-                    <p id="feedate" style="font-size: 14px; display:inline; float:left;" class="h8 mb-4"></p>
-                    <br><br>
-                    <p  align="center" style="font-size: 18px"  ><u>To Whom It May Concern</u></p>
+                    <div calss="row">
+                        <div class="col3">
+                            <h10><b>AL SANAWABAR SCHOOL </b></h10><br>
+                            <small> Manaseer School Road, P.o Box 1781</small><br>
+                            <small> TEL: 03 76798889</small><br>
+                            <small> www.alsanawbarschool.com</small>
+                        </div>
+                        <div class="col3">
+                            <img id="logo_img" src="images/sanawbar-logo.jpeg" width="80px" height="80px">
+                        </div>
+                        <div class="col3" style="float: right;">
+                            <p id="feedate" style="float:right;"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <p align="center" style="font-size: 18px;"><u>To Whom It May Concern</u></p>
 
-                    <p style="display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year</p>
-                    <select id="academic_years_en" style="display: inline;width: 140px !important;float:left;margin-left:10px;"></select>
-                    <p id='statementEn' style="font-size:18px; display:inline; float:left; padding-left:10px;" >as per the below fees</p>
+                    <p style="display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year <label id='academic_years_en_label'></label></p>
+                    <select id="academic_years_en"  onchange="fill_academic_year();" style="display: inline;width: 140px !important;float:left;margin-left:10px;"></select>
+                    <p id='statementEn' style="font-size:18px; display:inline; float:left; padding-left:10px;" >as per the below fees</p><br>
 
                     <table id="feeTable" class='table table-bordered table-sm student-list' border="1"></table>
                     <!-- <table id="feeTableAr" class='table table-bordered table-sm student-listAr arabictd' border="1"></table> -->
@@ -111,13 +122,14 @@ function ArabicDate() {
 
                     <p style="font-size: 14px;">The documents, information, and fees were reviewed and found authentic.</p>
                     <div class="row" style="padding: 20px;">        
-                        <p style="font-size: 14px;display: inline-block"> Accountant<br> Signature</p>
-                        <div  style="height :50px; width: 200px;border:1px solid #000; margin-left: 10px;display: inline-block"></div></div>
+                        <p style="font-size: 14px;display: inline-block;"> Accountant<br> Signature</p>
+                        <div style="height :50px; width: 200px;border:1px solid #000; margin-left: 10px;display: inline-block"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary"  id='printbtn'
-                            onclick="printJS({printable: 'feeCertificatePrint', type: 'html', header: null, documentTitle: null, ignoreElements: ['addstudent', 'delstudent'], honorColor: true, css: 'css/print.css'})">PRINT</button>
+                            onclick="printJS({printable: 'feeCertificatePrint', type: 'html', header: null, documentTitle: null, ignoreElements: ['addstudent', 'delstudent', 'academic_years_en'], honorColor: true, css: 'css/print.css'})">PRINT</button>
                 </div>
             </div>
         </div>
@@ -200,6 +212,15 @@ function ArabicDate() {
 </div>
 
 <script>
+
+    function fill_academic_year(){
+        document.getElementById('academic_years_en_label').innerHTML = document.getElementById('academic_years_en').options[ document.getElementById('academic_years_en').selectedIndex].text
+    }
+
+
+
+
+
     function language_select(lang) {
         if (lang == 'ar') {
             // document.getElementById('dest_input').placeholder = 'شهادة لمن يهمه الأمر - الرسوم الدراسيَّة';
@@ -354,14 +375,14 @@ function ArabicDate() {
                 document.getElementById('tution' + rowId).textContent = '0';
                 tution = document.getElementById('tution' + rowId).textContent;}
             
-            var paid = document.getElementById('paid'+rowId).textContent;
-            if (paid === ''){ 
-                document.getElementById('paid' + rowId).textContent = '0';
-                paid = document.getElementById('paid' + rowId).textContent;}
+            // var paid = document.getElementById('paid'+rowId).textContent;
+            // if (paid === ''){ 
+            //     document.getElementById('paid' + rowId).textContent = '0';
+            //     paid = document.getElementById('paid' + rowId).textContent;}
             
             var total = parseInt(uniform) + parseInt(bus) + parseInt(book) + parseInt(tution);
             document.getElementById('total' + rowId).textContent = total;
-            document.getElementById('balance'+rowId).textContent = total - parseInt(paid);
+            // document.getElementById('balance'+rowId).textContent = total - parseInt(paid);
         }
     }
     
@@ -427,9 +448,10 @@ function ArabicDate() {
                         case "GR1":
                         case "GR2":
                         case "GR3":
-                        case "GR4":
-                            feesGR1234(rowSelected, rowId);
+                            feesGR123(rowSelected, rowId);
                             Break;
+                        case "GR4":
+                            feesGR4(rowSelected, rowId);
                         case "GR5":
                         case "GR6":
                             feesGR56(rowSelected, rowId);
@@ -481,9 +503,10 @@ function applyfeesAr(str) {
                         case "GR1":
                         case "GR2":
                         case "GR3":
-                        case "GR4":
-                            feesGR1234Ar(rowSelected, rowId);
+                            feesGR123Ar(rowSelected, rowId);
                             Break;
+                        case "GR4":
+                            feesGR4Ar(rowSelected, rowId);
                         case "GR5":
                         case "GR6":
                             feesGR56Ar(rowSelected, rowId);
@@ -594,11 +617,11 @@ function applyfeesAr(str) {
         <option value='KG2'>KG2</option>\n\
         <option value='GR1'>GR1</option>\n\
         <option value='GR2'>GR2</option>\n\
-         <option value='GR3'>GR3</option>\n\
-         <option value='GR4'>GR4</option>\n\
+        <option value='GR3'>GR3</option>\n\
+        <option value='GR4'>GR4</option>\n\
         <option value='GR5'>GR5</option>\n\
-         <option value='GR6'>GR6</option>\n\
-         <option value='GR7'>GR7</option>\n\
+        <option value='GR6'>GR6</option>\n\
+        <option value='GR7'>GR7</option>\n\
         <option value='GR8'>GR8</option>\n\
         <option value='GR9'>GR9</option>\n\
         <option value='GR10'>GR10</option>\n\
@@ -610,8 +633,6 @@ function applyfeesAr(str) {
         <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
         <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
         <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
-        <td class=tdstyle ><label contentEditable class=form-control  ></label></td>\n\
-        <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
         <td id='delstudent'><span   onclick='deleteRow(this)' title='Remove Student' style='cursor: pointer; color:red' class='close'>&#10008;</span></td></tr>");
             jQuery('table.student-list').append(newRow);
         }
@@ -619,30 +640,40 @@ function applyfeesAr(str) {
 
     <!--Fee English-->
     <script>
-             function feesKG(row, rowId) {
-            
-            row.cells[4].innerHTML = "<label contentEditable class=form-control  style='text-align:center' id='uniform" + rowId + "' type='number' min='0' value='90'>90</label>";
-            row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' placeholder='3500'>3500</label>";
-            row.cells[7].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='840'>840</label>";
-            row.cells[8].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='13270'>13270</label>";
-            row.cells[9].innerHTML = "<label  class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
+        function feesKG(row, rowId) {
+            row.cells[3].innerHTML = "<label contentEditable class=form-control  style='text-align:center' id='uniform" + rowId + "' type='number' min='0' value='90'>90</label>";
+            row.cells[4].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' placeholder='3500'>3500</label>";
+            row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='840'>840</label>";
+            row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='13270'>13270</label>";
+            row.cells[7].innerHTML = "<label  class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
             // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
             // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
 
         }
 
-        function feesGR1234(row, rowId) {
+        function feesGR123(row, rowId) {
             row.cells[3].innerHTML = "<label contentEditable class=form-control onload='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
             row.cells[4].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' value='3500'>3500</label>";
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1320'>1320</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='15230'>15230</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
 
+
+        function feesGR4(row, rowId) {
+            row.cells[3].innerHTML = "<label contentEditable class=form-control onchange='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
+            row.cells[4].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' value='3500'>3500</label>";
+            row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1320'>1320</label>";
+            row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='18110'>18110</label>";
+            row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            cal_total();
+        }
 
         function feesGR56(row, rowId) {
             row.cells[3].innerHTML = "<label contentEditable class=form-control onchange='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
@@ -650,8 +681,8 @@ function applyfeesAr(str) {
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1680'>1680</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='18110'>18110</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
 
@@ -662,8 +693,8 @@ function applyfeesAr(str) {
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1680'>1680</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='22840'>22840</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
 
@@ -673,8 +704,8 @@ function applyfeesAr(str) {
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1920'>1920</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='28190'>28190</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
         function feesGR10(row, rowId) {
@@ -683,8 +714,8 @@ function applyfeesAr(str) {
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1200'>1200</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='28190'>28190</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
 
@@ -694,8 +725,8 @@ function applyfeesAr(str) {
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='2760'>2760</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='28190'>28190</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
 
@@ -705,8 +736,8 @@ function applyfeesAr(str) {
             row.cells[5].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1800'>1800</label>";
             row.cells[6].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='28190'>28190</label>";
             row.cells[7].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_total();
         }
 </script>
@@ -726,7 +757,7 @@ function applyfeesAr(str) {
 
         }
 
-        function feesGR1234Ar(row, rowId) {
+        function feesGR123Ar(row, rowId) {
             row.cells[4].innerHTML = "<label contentEditable class=form-control onload='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
             row.cells[3].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' value='3500'>3500</label>";
             row.cells[2].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1320'>1320</label>";
@@ -737,6 +768,16 @@ function applyfeesAr(str) {
             cal_totalAr();
         }
 
+        function feesGR56Ar(row, rowId) {
+            row.cells[4].innerHTML = "<label contentEditable class=form-control onchange='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
+            row.cells[3].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' value='3500'>3500</label>";
+            row.cells[2].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1320'>1320</label>";
+            row.cells[1].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='18110'>18110</label>";
+            row.cells[0].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
+            // row.cells[1].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[0].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            cal_totalAr();
+        }
 
         function feesGR56Ar(row, rowId) {
             row.cells[4].innerHTML = "<label contentEditable class=form-control onchange='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
