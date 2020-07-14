@@ -98,7 +98,7 @@ function ArabicDate() {
                     <br>
                     <p align="center" style="font-size: 18px;"><u>To Whom It May Concern</u></p>
 
-                    <p style="display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year <label id='academic_years_en_label'></label></p>
+                    <p style="display:inline; float:left;" >This is to certify that the student(s) below is registered at the school for the academic year <label id='academic_years_en_label'>2020 - 2021</label></p>
                     <select id="academic_years_en"  onchange="fill_academic_year();" style="display: inline;width: 140px !important;float:left;margin-left:10px;"></select>
                     <p id='statementEn' style="font-size:18px; display:inline; float:left; padding-left:10px;" >as per the below fees</p><br>
 
@@ -121,9 +121,11 @@ function ArabicDate() {
                     <p style="font-size: 14px; ">For official use only</p>
 
                     <p style="font-size: 14px;">The documents, information, and fees were reviewed and found authentic.</p>
-                    <div class="row" style="padding: 20px;">        
-                        <p style="font-size: 14px;display: inline-block;"> Accountant<br> Signature</p>
-                        <div style="height :50px; width: 200px;border:1px solid #000; margin-left: 10px;display: inline-block"></div>
+                    <div id="sign_div" class="row" style="padding: 20px;">        
+                        <div id="sign_label_div" style="width:10%; display:inline;">
+                            <p id="sign_label" style="font-size: 14px;"> Accountant<br> Signature</p>
+                        </div>
+                        <div id="sign_box" style="height :50px; width: 200px;border:1px solid #000; margin-left: 10px;display: inline;"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
