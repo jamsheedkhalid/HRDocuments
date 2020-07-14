@@ -48,7 +48,7 @@
 
 
 
-#academic_years_en_label{
+#academic_years_en_label, #academic_years_ar_label{
     display: none;
 }
 
@@ -77,4 +77,8 @@ input[type="radio"] {
     margin-right: auto;
     display: block;
 
+}
+
+#sign_label_div_ar{
+    display: none;
 }

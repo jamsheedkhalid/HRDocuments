@@ -82,9 +82,10 @@ select::-ms-expand {
 #feeTableAr td.name, th.name {min-width: 250px!important;}
 label {text-align: center;display: block;}
 #academic_years_en_label {text-align: unset;display: inline;}
+#academic_years_ar_label {text-align: unset;display: inline;}
 
 #feedatear, #feedatear2 {
-  float:right!important;
+  float:left!important;
 }
 
 #statementEn, #statement {
@@ -103,10 +104,7 @@ label {text-align: center;display: block;}
   display: block;
 }
 
-#sign_div{
-  /* width:90%; */
-  /* border: 5px solid yellow; */
-}
+
 #sign_label_div {
   /* width: 20%; */
   /* color: royalblue; */
@@ -122,3 +120,12 @@ label {text-align: center;display: block;}
   /* border: 5px solid green; */
   float: left;
 }
+
+#sign_label_ar{
+  background-color: red;
+}
+
+#sign_box_ar{
+  margin: unset;
+}
+

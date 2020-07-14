@@ -155,59 +155,78 @@ function ArabicDate() {
                 </div>
 
                 <div class="modal-body" id="feeCertificatePrintArabic" style="padding: 20px;">
-                    <div class='row'>
-                        <div class='col-9'></div>
-                        <div class='col-3'>
-                            <div id="feedatear" style="font-size: 14px" class='right'></div>
+                <div calss="row">
+                    <div class="col3" style="float: left; padding-left:0px">
+                        <div id="feedatear" style="font-size: 14px" class='left'></div>
                             <br>
-                            <div id="feedatear2" class='right'><?php echo ArabicDate();?></div>
+                        <div id="feedatear2" class='left'><?php echo ArabicDate();?></div>
+                    </div>
+                    <div class="col3">
+                        <img id="logo_img" src="images/sanawbar-logo.jpeg" width="80px" height="80px">
+                    </div>
+                    <div class="col3" style="float:right;">
+                        <h10 style="float:right;"><b>مدرسة الصنوبر الخاصة</b></h10><br>
+                        <small style="float:right;"> شارع المدارس، المناصير ص ب 1781</small><br>
+                        <small style="float:right;"><small>03 76798889 :</small>هاتف</small><br>
+                        <small style="float:right;"> www.alsanawbarschool.com</small>
+                    </div>                        
+                </div>
+
+                <!-- <div class='col-9 bank-table' align="right" id="bank-table">
+                    <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
+                    <button id="IBNAdd" onclick="IBANAdd()" title="إضافة طالب جديد" class="btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف سطر</button>
+                </div> -->
+
+                <br>
+                
+                <p align="center" style="font-size: 18px"><u id="dest">إلى من يهمهُ الأمر</u></p>
+                <p align="right" style="font-size:18px; display: inline;float: right;"><label id='academic_years_ar_label'>2020 - 2021</label> تشهد إدارة مدرسة الصنوبر  الخاصة بأنَّ الطالب المذكور أدناه مسجل في المدرسة للعام الدراسي</p>
+                <select id="academic_years" onchange="fill_academic_year_ar();" style="display: inline;width: 140px !important;float: right;margin-right: 10px;"></select>
+
+                <p id="statement" align="right" style="font-size:18px;margin-right: 10px;display: inline;float: right;"> وفق الرسوم المستحقة التالية</p>
+                <br>
+                <table id="feeTableAr" class='table table-bordered table-sm student-listAr' border="1"></table>
+                
+                <button onclick="addstudentAr()" id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button>
+
+                <div align="center">
+                    <p style="font-size: 14px" align="right"><br><u><b>اصدرت هذه الشهادة بناءاً على طلب ولي الامر دون تحمل ادنى مسئولية تجاه الغير</b></u></p>
+                </div>  
+                <br>
+                <ul align='right' style=" list-style-type:none; font-size:16px">ملاحظات:
+                    <li style="font-size:16px">تتعھد المدرسة بصحة البیانات اعلاه والالتزام بالرسوم الدراسیة المعتمدة من قبل مجلس ابوظبي للتعلیم دون زیادة او نقصان
+                        &#10022</li>
+                    <li style="font-size:16px">	اي كشط او تغير في محتوى الشهادة يلغيها  &#10022</li>    
+                </ul>
+
+                <p style="font-size: 14px; padding-top: 30px;" align="left"><i> مدير المدرسة </i></p>
+                <hr>
+                <div align='right'>
+                    <p style="font-size: 14px; ">لللاستعمال الرسمي </p>
+
+                    <p style="font-size: 14px;">تم تدقيق البيانات والرسوم الدراسية في هذه الوثيقة ووجدت صحيحة </p>
+                    
+                    <div class="row" style="padding: 20px;">        
+                        <!-- <div  >hllo world</div> -->
+                        <div id="sign_label_div_ar" style="margin-left: 50%; float:right">
+                        <svg id="sign_box_ar" style="display: inline; "  width="200" height="50">
+                        <rect  width="200" height="50" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+                        </svg>                       
+
+                            <p id="sign_label_ar" style="font-size: 14px; float:right; padding-left:15px"> توقيع<br> المحاسب</p>
                         </div>
 
-                        <!-- <div class='col-9 bank-table' align="right" id="bank-table">
-                            <table class="IBAN-table" id="IBAN-table" style="width:40%"></table>
-                            <button id="IBNAdd" onclick="IBANAdd()" title="إضافة طالب جديد" class="btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف سطر</button>
-                        </div> -->
+
+
                     </div>
-
-                    <br><br>
-                    <p align="center" style="font-size: 18px"><u id="dest"></u></p>
-                    <p align="right" style="font-size:18px; display: inline;float: right;">تشهد إدارة مدرسة الصنوبر  الخاصة بأنَّ الطالب المذكور أدناه مسجل في المدرسة للعام الدراسي</p>
-                    <select id="academic_years" style="display: inline;width: 140px !important;float: right;margin-right: 10px;"></select>
-
-                    <p id="statement" align="right" style="font-size:18px;margin-right: 10px;display: inline;float: right;"> وفق الرسوم المستحقة التالية</p>
-                    <br>
-                    <table id="feeTableAr" class='table table-bordered table-sm' border="1"></table>
-                    
-                    <!-- <button onclick="addstudentAr()"id="addstudentar" title="إضافة طالب جديد" class="add-student btn btn-sm " style="color: green;  font-weight: 100px">&#43; أضف طالب</button> -->
-                    
-
-                    <div align="center">
-                        <p style="font-size: 14px" align="right"><br><u><b>اصدرت هذه الشهادة بناءاً على طلب ولي الامر دون تحمل ادنى مسئولية تجاه الغير</b></u></p>
-                    </div>  
-                    <br>
-                    <ul align='right' style=" list-style-type:none; font-size:16px">ملاحظات:
-                        <li style="font-size:16px">تتعھد المدرسة بصحة البیانات اعلاه والالتزام بالرسوم الدراسیة المعتمدة من قبل مجلس ابوظبي للتعلیم دون زیادة او نقصان
-                            &#10022</li>
-                        <li style="font-size:16px">	اي كشط او تغير في محتوى الشهادة يلغيها  &#10022</li>    
-                    </ul>
-
-                    <p style="font-size: 14px; padding-top: 30px;" align="left"><i> مدير المدرسة </i></p>
-                    <hr>
-                    <div align='right'>
-                        <p style="font-size: 14px; ">لللاستعمال الرسمي </p>
-
-                        <p style="font-size: 14px;">تم تدقيق البيانات والرسوم الدراسية ووجدت صحيحة </p>
-                        <div class="row" style="padding: 20px;">        
-                            <div  style="height :50px; width: 200px;border:1px solid #000; margin-left: 10px;display: inline-block"></div></div>
-
-                        <p style="font-size: 14px;display: inline-block"> اسم الموظف </p>
-                    </div></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id=""
-                            onclick="printJS({printable: 'feeCertificatePrintArabic', type: 'html', ignoreElements: ['IBNDeleteEn','IBNAdd','IBNDelete','addstudentar', 'delstudentAr'], maxWidth: 500, css: 'css/print.css'})">PRINT</button>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id=""
+                    onclick="printJS({printable: 'feeCertificatePrintArabic', type: 'html', ignoreElements: ['academic_years','IBNDeleteEn','IBNAdd','IBNDelete','addstudentar', 'delstudentAr'], maxWidth: 500, css: 'css/print.css'})">PRINT</button>
+            </div>
+        </div>
         </div>
     </div>
     
@@ -218,7 +237,9 @@ function ArabicDate() {
     function fill_academic_year(){
         document.getElementById('academic_years_en_label').innerHTML = document.getElementById('academic_years_en').options[ document.getElementById('academic_years_en').selectedIndex].text
     }
-
+    function fill_academic_year_ar(){
+        document.getElementById('academic_years_ar_label').innerHTML = document.getElementById('academic_years').options[ document.getElementById('academic_years').selectedIndex].text
+    }
 
 
 
@@ -579,9 +600,7 @@ function applyfeesAr(str) {
       <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
       <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
       <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
-      <td class=tdstyle ><label contentEditable class=form-control  ></label></td>\n\
-      <td class=tdstyle ><label contentEditable class=form-control ></label></td>\n\
-          <td><select id='grselect' onchange='applyfeesAr(this.options[this.selectedIndex].value); ' class='form-control btn-select'>\n\
+      <td><select id='grselect' onchange='applyfeesAr(this.options[this.selectedIndex].value); ' class='form-control btn-select'>\n\
       <option selected disabled>اختر الصف</option>\n\
       <option value='KG1'>روضة  ١</option>\n\
       <option value='KG2'>روضة  ٢ </option>\n\
@@ -597,7 +616,8 @@ function applyfeesAr(str) {
       <option value='GR10'>الصف١٠ </option>\n\
       <option value='GR11'>الصف١١ </option>\n\
       <option value='GR12'>الصف١٢ </option>\n\
-      </select></td>\n\<td><select class='form-control selectprint' ><option>أمريكي</option><option>وزارة التعليم</option></select></td>\n\
+      </select></td>\n\
+      <td><select class='form-control selectprint' ><option>أمريكي</option><option>وزارة التعليم</option></select></td>\n\
      <td><input id='studentName' name='studentName' placeholder='أدخل اسم الطالب' style='text-transform:capitalize' type='text'/></td>\n\
       <td id='delstudentAr'><span   onclick='deleteRowAr(this)' title='حذف الطالب' style='cursor: pointer; color:red' class='close'>&#10008;</span></td></tr>");
         jQuery('table.student-listAr').append(newRow);
@@ -770,14 +790,14 @@ function applyfeesAr(str) {
             cal_totalAr();
         }
 
-        function feesGR56Ar(row, rowId) {
+        function feesGR4Ar(row, rowId) {
             row.cells[4].innerHTML = "<label contentEditable class=form-control onchange='total(" + rowId + ")' style='text-align:center' id='uniform" + rowId + "' type='number' value='100'>100</label>";
             row.cells[3].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='bus" + rowId + "' type='number' value='3500'>3500</label>";
             row.cells[2].innerHTML = "<label contentEditable class=form-control id='book" + rowId + "' type='number' style='text-align:center' value='1320'>1320</label>";
             row.cells[1].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='tution" + rowId + "' type='number' value='18110'>18110</label>";
             row.cells[0].innerHTML = "<label contentEditable class=form-control style='text-align:center' id='total" + rowId + "' type='number'  ></label>";
-            // row.cells[1].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
-            // row.cells[0].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
+            // row.cells[8].innerHTML = "<label  contentEditable class=form-control style='text-align:center' id='paid" + rowId + "' type='number'  >0</label>";
+            // row.cells[9].innerHTML = "<label   class=form-control style='text-align:center' id='balance" + rowId + "' type='number'  ></label>";
             cal_totalAr();
         }
 
