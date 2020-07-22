@@ -86,6 +86,13 @@ checkLoggedIn()
                         <label class="custom-control-label" for="radiofee">Fee Certificate</label>
                     </div>
                 </div>
+                <?php } if( $_SESSION['HR_FIN'] == 1 ||  $_SESSION['HR_FIN'] == 3){?>
+                <div class="col-sm-2" >
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" onclick="formerStudentsFunction();" id="formerStudentsRadio" name="radios">
+                        <label class="custom-control-label" for="formerStudentsRadio">Former Students Certificate</label>
+                    </div>
+                </div>
                 <?php } ?>
                 <div class="col-sm-2">
                     <form action="logout.php" style="float: right;padding-top: 5px; padding-right: 10px;margin-left: 5px" >
@@ -102,6 +109,7 @@ checkLoggedIn()
         <?php include 'salary.php'; ?>
         <?php include 'gratuity.php'; ?>
         <?php include 'feeCertificate.php'; ?>
+        <?php include 'formerStudents.php'; ?>
         
 <script>
     $(function() {
@@ -115,6 +123,25 @@ checkLoggedIn()
         <script type="text/javascript">
 
 
+            function formerStudentsFunction() {
+                if (document.getElementById('formerStudentsRadio').checked) {
+
+                    document.getElementById('nolform').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
+                    document.getElementById('gratuitydiv').style.display = 'none';
+                    document.getElementById('feeCertificate').style.display = 'none';
+                    document.getElementById('printsalary').style.display = 'none';
+                    document.getElementById('gratuitycalcdiv').style.display = 'none';
+                    document.getElementById('formerStudentsDiv').style.display = 'inline';
+
+
+                } else {
+
+                    document.getElementById('nolform').style.display = 'none';
+                    document.getElementById('gratuitydiv').style.display = 'none';
+                    document.getElementById('salaryform').style.display = 'none';
+                }
+            }
             function yesnoCheckNol() {
                 if (document.getElementById('radionol').checked) {
 
@@ -124,6 +151,7 @@ checkLoggedIn()
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
 
 
                 } else {
@@ -144,6 +172,7 @@ checkLoggedIn()
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
 
                 } else {
 
@@ -162,6 +191,7 @@ checkLoggedIn()
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
 
 
                 } else {
@@ -180,6 +210,7 @@ checkLoggedIn()
 
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
 
 
                 } else {
@@ -190,21 +221,15 @@ checkLoggedIn()
             }
 
             window.onload = function () {
-                document.getElementById('nolform').style.display = 'inline';
+                document.getElementById('nolform').style.display = 'none';
                 document.getElementById('gratuitydiv').style.display = 'none';
                 document.getElementById('feeCertificate').style.display = 'none';
                 document.getElementById('salaryform').style.display = 'none';
+                document.getElementById('formerStudentsDiv').style.display = 'inline';
 
             };
-
         </script>
-
-
-
-
-
-    </body>
-    <script src="js/calender.js"></script>
-<!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>-->
+        <script src="js/calender.js"></script>
+        <script src="js/yearClassSubject.js"></script>
+    </head>
 </html>

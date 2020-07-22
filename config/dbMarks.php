@@ -1,14 +1,8 @@
 <?php
-
-/*
- * Author: Jamsheed
- * Email: jamsheedkhalid35@gmail.com
- */
-
 $servername = "localhost";
-$username = "fedena";
-$password = "fedenapw";
-$DB = "alsanawabar";
+$username = "marks";
+$password = "Indepth@2020";
+$DB = "marks";
 
 $conn = new mysqli($servername, $username, $password, $DB);
 
