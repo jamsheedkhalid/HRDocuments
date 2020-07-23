@@ -1,3 +1,4 @@
+<div id='debug'></div>
 <div id='formerStudentsDiv' style="display: none;">
     <h1>Former Students</h1>    
     <div class='row container'>
