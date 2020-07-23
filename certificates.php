@@ -121,37 +121,33 @@ checkLoggedIn()
 </script>
 
         <script type="text/javascript">
-
-
             function formerStudentsFunction() {
                 if (document.getElementById('formerStudentsRadio').checked) {
-
+                    document.getElementById('formerStudentsDiv').style.display = 'inline';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
-                    document.getElementById('formerStudentsDiv').style.display = 'inline';
-
-
                 } else {
 
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
                 }
             }
             function yesnoCheckNol() {
                 if (document.getElementById('radionol').checked) {
-
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'inline';
                     document.getElementById('salaryform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
-                    document.getElementById('formerStudentsDiv').style.display = 'none';
+                    
 
 
                 } else {
@@ -166,16 +162,16 @@ checkLoggedIn()
             function yesnoCheckSalary() {
 
                 if (document.getElementById('radiosalary').checked) {
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'inline';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
                     document.getElementById('gratuitycalcdiv').style.display = 'none';
-                    document.getElementById('formerStudentsDiv').style.display = 'none';
-
                 } else {
 
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
@@ -185,15 +181,13 @@ checkLoggedIn()
             function yesnoCheckGratuity() {
                 if (document.getElementById('radiogratuity').checked) {
 
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'inline';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
                     document.getElementById('feeCertificate').style.display = 'none';
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
-                    document.getElementById('formerStudentsDiv').style.display = 'none';
-
-
                 } else {
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
@@ -201,18 +195,15 @@ checkLoggedIn()
                 }
             }
             
-                        function yesnoCheckFeeCertificate() {
+            function yesnoCheckFeeCertificate() {
                 if (document.getElementById('radiofee').checked) {
+                    document.getElementById('formerStudentsDiv').style.display = 'none';
                     document.getElementById('feeCertificate').style.display = 'inline';
                     document.getElementById('gratuitydiv').style.display = 'none';
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('salaryform').style.display = 'none';
-
                     document.getElementById('printsalary').style.display = 'none';
                     document.getElementById('printnol').style.display = 'none';
-                    document.getElementById('formerStudentsDiv').style.display = 'none';
-
-
                 } else {
                     document.getElementById('nolform').style.display = 'none';
                     document.getElementById('gratuitydiv').style.display = 'none';
@@ -221,11 +212,11 @@ checkLoggedIn()
             }
 
             window.onload = function () {
-                document.getElementById('nolform').style.display = 'none';
+                document.getElementById('nolform').style.display = 'inline';
                 document.getElementById('gratuitydiv').style.display = 'none';
                 document.getElementById('feeCertificate').style.display = 'none';
                 document.getElementById('salaryform').style.display = 'none';
-                document.getElementById('formerStudentsDiv').style.display = 'inline';
+                document.getElementById('formerStudentsDiv').style.display = 'none';
 
             };
         </script>

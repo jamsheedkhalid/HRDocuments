@@ -1,5 +1,4 @@
-<div id='debug'></div>
-<div id='formerStudentsDiv'>
+<div id='formerStudentsDiv' style="display: none;">
     <h1>Former Students</h1>    
     <div class='row container'>
         <table class='table table-bordered mx-auto' style='width:100%'>
