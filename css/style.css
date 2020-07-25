@@ -82,3 +82,9 @@ input[type="radio"] {
 #sign_label_div_ar{
     display: none;
 }
+#formerResults th,td {
+    text-align: center!important;
+}
+#formerResults td {
+    font-size: 18px;
+}

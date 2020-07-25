@@ -14,20 +14,22 @@ $sql = "SELECT * FROM marks WHERE ACD_CODE = '$year' AND GRADE = '$grade' AND SE
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo "<table class='table table-bordered'>
-    <tr>
-        <th>SN.</th>
-        <th>ID</th>
-        <th>NAME-EN</th>
-        <th>NAME-AR</th>
-        <th>DOB</th>
-        <th>YEAR</th>
-        <th>GRADE</th>
-        <th>SECTION</th>
-        <th>SUBJECT-EN</th>
-        <th>SUBJECT-AR</th>
-        <th>MARK</th>
-    </tr>";
+    echo "<table class='table table-bordered table-striped table-hover' id='formerResults'>
+        <thead class='thead-dark'>
+            <tr>
+            <th>SN.</th>
+            <th>ID</th>
+            <th>NAME-EN</th>
+            <th>NAME-AR</th>
+            <th>DOB</th>
+            <th>YEAR</th>
+            <th>GRADE</th>
+            <th>SECTION</th>
+            <th>SUBJECT-EN</th>
+            <th>SUBJECT-AR</th>
+            <th>MARK</th>
+        </tr>
+    </thead>";
     $mark = 0;
     while ($row = mysqli_fetch_array($result)) {
         echo "<tr><td>" . $row['id'] . "</td><td>" . $row['STUDENT_ID'] . "</td>";

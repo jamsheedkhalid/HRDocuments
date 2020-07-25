@@ -212,11 +212,11 @@ checkLoggedIn()
             }
 
             window.onload = function () {
-                document.getElementById('nolform').style.display = 'inline';
+                document.getElementById('nolform').style.display = 'none';
                 document.getElementById('gratuitydiv').style.display = 'none';
                 document.getElementById('feeCertificate').style.display = 'none';
                 document.getElementById('salaryform').style.display = 'none';
-                document.getElementById('formerStudentsDiv').style.display = 'none';
+                document.getElementById('formerStudentsDiv').style.display = 'inline';
 
             };
         </script>
