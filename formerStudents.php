@@ -3,13 +3,13 @@
     <!-- Title -->
     <div class='row container' style='min-width:100%'>
         <div class='col-1'></div>
-        <div class='col-10'><h1>Former Students</h1></div>
+        <div class='col-10' style='min-width:100%'><h1>Former Students</h1></div>
         <div class='col-1'></div>
     </div>
     <!-- Dropdowns -->
     <div class='row container' style='min-width:100%'>
         <div class='col-1'></div>
-        <div class='col-10'>
+        <div class='col-10' style='min-width:100%'>
             <table class='table table-bordered mx-auto' style='width:100%'>
                 <thead class='thead-dark'>
                     <tr>
@@ -29,15 +29,10 @@
         </div>
         <div class='col-1'></div>
     </div>
-    <div class='row container' style='min-width:100%'>
-        <div class='col-1'></div>
-        <div class='col-10'></div>
-        <div class='col-1'></div>
-    </div>
     <!-- Result -->
     <div class='row container' style='min-width:100%'>
         <div class='col-1'></div>
-        <div class='col-10' id='result'></div>
+        <div class='col-10' id='result' style='min-width:100%'></div>
         <div class='col-1'></div>
     </div>
 </div>
