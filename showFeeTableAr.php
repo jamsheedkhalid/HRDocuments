@@ -13,16 +13,23 @@ $sql = "SELECT DISTINCT first_name , batch_id "
 $ExecQuery = MySQLi_query($conn, $sql); 
 if ($ExecQuery->num_rows > 0) {
     $si = 0;
-    echo " <thead style='text-align:right' ><tr>                                           
-                                            <th scope=col>الاجمالي </th>
-                                            <th scope=col>الرسوم الدراسية</th>
-                                            <th scope=col >الكتب</th>
-                                            <th scope=col>المواصلات</th>
-                                            <th scope=col>الزي المدرسي</th>
-                                            <th scope=col>الصف</th>
-                                            <th scope=col>المنهج</th>
-                                            <th scope=col class='name'>الأسم</th>
+    echo " <thead style='text-align:right' >
+    <tr align=center>                                           
+                                            <th scope=col rowspan=2>الاجمالي </th>
+                                            <th scope=col rowspan=2>الدفعة الثالثة</th>
+                                            <th scope=col rowspan=2>الدفعة الثانية</th>
+                                            <th scope=col colspan=4>الدفعة الأولى</th>
+                                            <th scope=col rowspan=2>الصف</th>
+                                            <th scope=col rowspan=2>المنهج</th>
+                                            <th scope=col class='name' rowspan=2>الأسم</th>
                                         </tr>
+                <tr align=center>
+<th scope=col>رسوم الحافلة</th>
+            <th scope=col>رسوم اللباس</th>
+<th scope=col>رسوم الكتب</th>
+<th scope=col>رسوم الدراسية</th>
+
+</tr>
                                     </thead>";
     $j = 1;
     while ($row = $ExecQuery->fetch_assoc()) {
@@ -40,6 +47,8 @@ if ($ExecQuery->num_rows > 0) {
 
 
         echo"<tr style='text-align:right'>"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
+        . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
         . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
         . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"
         . "<td class='tdstyle'><label contentEditable class=form-control></label></td>"

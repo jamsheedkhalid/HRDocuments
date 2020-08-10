@@ -13,18 +13,23 @@ $sql = "SELECT DISTINCT CONCAT(last_name) name, batch_id "
 $ExecQuery = MySQLi_query($conn, $sql);
 if ($ExecQuery->num_rows > 0) {
     $si = 0;
-    echo " <thead><tr>
-                                            
-                                            <th scope=col class='name'>Name</th>
-                                            <th scope=col>Curriculum</th>
-                                            <th scope=col>Grade</th>
-                                            <th scope=col>Uniform</th>
-                                            <th scope=col >School Bus</th>
-                                            <th scope=col>School  Books</th>
-                                            <th scope=col>Tution Fees</th>
-                                            <th scope=col>Total</th>
-                                        </tr>
-                                    </thead>";
+    echo " <thead><tr align=center>
+                <th scope=col class='name' rowspan=2>Name</th>
+                <th scope=col rowspan=2>Curriculum</th>
+                <th scope=col rowspan=2>Grade</th>
+                <th scope=col colspan=4 align=center>1st Installment</th>
+                <th scope=col rowspan=2>2st Installment</th>
+                <th scope=col rowspan=2>3st Installment</th>
+                <th scope=col rowspan=2>Total</th>
+
+            </tr>
+            <tr align=center>
+                <th scope=col>Tution Fees</th>
+                <th scope=col>Books</th>
+                <th scope=col>Uniform</th>
+                <th scope=col>Bus</th>
+            </tr>       
+        </thead>";
     $i = 1;
     while ($row = $ExecQuery->fetch_assoc()) {
         $sqlBatch = "SELECT course_id FROM batches WHERE id = '$row[batch_id]'";
@@ -41,7 +46,7 @@ if ($ExecQuery->num_rows > 0) {
 
 
         echo"<tr>"
-        . "<td class='name'>" . $row['name'] . "</td>"
+        . "<td class='name' align=left>" . $row['name'] . "</td>"
         . "<td><select class='form-control selectprint' ><option>American</option><option>MOE</option></select></td>"
         . "<td style='font-size:8px'><select onchange='applyfees(this.options[this.selectedIndex].text);' class='form-control btn-select' ><option disabled selected>" . $course . "</option><option>KG1 </option>"
         . "<option>KG2 </option>";
@@ -53,6 +58,8 @@ if ($ExecQuery->num_rows > 0) {
         . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control ></label></td>"
+        . "<td class=tdstyle ><label contentEditable class=form-control></label></td>"
+        . "<td class=tdstyle ><label contentEditable class=form-control></label></td>"
         . "<td class=tdstyle ><label contentEditable class=form-control></label></td>"
         . "<td id='delstudent'><span  onclick='deleteRow(this)' title='Remove Student' style='cursor: pointer; color:red' class='close'>&#10008;</span></td>"
         . "</tr>";
